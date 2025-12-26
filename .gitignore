@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Package lock files (optional - uncomment if you want to ignore them)
+# package-lock.json
+# **/package-lock.json
+# yarn.lock
+# **/yarn.lock
+# pnpm-lock.yaml
+# **/pnpm-lock.yaml
+
+# Server packages
+attendance_system_Server/node_modules/
+attendance_system_Server/package-lock.json
+
+# Frontend packages
+attendance_system/node_modules/
+attendance_system/package-lock.json
+
+# Next.js build outputs
+attendance_system/.next/
+attendance_system/out/
+attendance_system/.vercel
+
+# Build outputs
+**/build/
+**/dist/
+
+# Environment files
+.env
+.env.local
+.env*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
