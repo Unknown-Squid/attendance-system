@@ -2,10 +2,10 @@
 
 Attendance Checker System (QR Code & OCR)
 
-✅ Main / Production Branch
-This branch contains the stable, production-ready version of the Attendance Checker System.
-All code in this branch has been tested and approved for release.
-Only critical fixes and reviewed updates should be merged into main.
+⚠️ Staging Environment Notice
+This repository is used for the staging environment of the Attendance Checker System.
+It contains features and fixes that have passed development testing and are under validation before production release.
+Only stable and review-approved changes should be pushed here.
 
 Overview
 
