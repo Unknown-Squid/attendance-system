@@ -1,5 +1,12 @@
-# attendance-system
+#attendance-system
+
 Attendance Checker System (QR Code & OCR)
+
+✅ Main / Production Branch
+This branch contains the stable, production-ready version of the Attendance Checker System.
+All code in this branch has been tested and approved for release.
+Only critical fixes and reviewed updates should be merged into main.
+
 Overview
 
 The Attendance Checker System is a modern solution for tracking attendance efficiently using QR codes and OCR (Optical Character Recognition). The system allows students or employees to mark their presence by scanning a QR code or having their ID card read via OCR, automating attendance records and reducing manual errors.
@@ -7,34 +14,33 @@ The Attendance Checker System is a modern solution for tracking attendance effic
 This project integrates frontend interfaces, backend services, and a database to provide real-time attendance tracking and reporting.
 
 Features
-
 QR Code Attendance
 
-Generate unique QR codes for each class, session, or event.
+Generate unique QR codes for each class, session, or event
 
-Scan QR codes via mobile or desktop devices to mark attendance.
+Scan QR codes via mobile or desktop devices to mark attendance
 
 OCR-Based Attendance
 
-Capture and recognize text from ID cards or printed documents.
+Capture and recognize text from ID cards or printed documents
 
-Automatically match recognized data with registered users.
+Automatically match recognized data with registered users
 
 Dashboard & Reports
 
-Real-time attendance dashboard for teachers or administrators.
+Real-time attendance dashboard for teachers or administrators
 
-Export attendance reports in CSV or PDF format.
+Export attendance reports in CSV or PDF format
 
 User Management
 
-Add, update, or remove users (students/employees).
+Add, update, or remove users (students/employees)
 
-Assign users to classes, groups, or departments.
+Assign users to classes, groups, or departments
 
 Notifications
 
-Optional email or push notifications for attendance confirmation.
+Optional email or push notifications for attendance confirmation
 
 Tech Stack
 
@@ -44,7 +50,7 @@ Backend: Node.js, Express
 
 Database: MySQL / MongoDB
 
-QR Code Generation & Scanning: qrcode library, react-qr-reader or similar
+QR Code: qrcode, react-qr-reader or similar
 
 OCR: Tesseract.js or equivalent OCR library
 
