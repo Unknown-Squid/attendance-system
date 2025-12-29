@@ -28,8 +28,6 @@ attendance_system/.vercel
 **/dist/
 
 # Environment files
-.env
-.env.local
 .env*.local
 
 # Logs
@@ -55,3 +53,4 @@ Thumbs.db
 next-env.d.ts
 
 .README.md
+config.bat
