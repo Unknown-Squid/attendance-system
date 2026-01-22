@@ -2,7 +2,7 @@
 
 import React from "react";
 import Modal from "./Modal";
-import Button from "@/app/Components/Buttons/Button";
+import Button from "@/app/Components/Fields/Buttons";
 
 interface ConfirmationModalProps {
   isOpen: boolean;
@@ -17,7 +17,7 @@ interface ConfirmationModalProps {
   danger?: boolean;
 }
 
-export default function ConfirmationModal({
+const ConfirmationModal = ({
   isOpen,
   onClose,
   onConfirm,
@@ -28,7 +28,7 @@ export default function ConfirmationModal({
   cancelLabel = "Cancel",
   confirmVariant = "primary",
   danger = false,
-}: ConfirmationModalProps) {
+}: ConfirmationModalProps) => {
   const handleConfirm = () => {
     onConfirm();
     onClose();
@@ -61,5 +61,7 @@ export default function ConfirmationModal({
       </div>
     </Modal>
   );
-}
+};
+
+export default ConfirmationModal;
 

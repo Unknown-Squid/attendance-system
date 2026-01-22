@@ -9,7 +9,7 @@ interface ModalProps {
   icon?: React.ReactNode;
 }
 
-export default function Modal({ isOpen, onClose, title, icon, children }: ModalProps) {
+const Modal = ({ isOpen, onClose, title, icon, children }: ModalProps) => {
   if (!isOpen) return null;
 
   return (
@@ -43,5 +43,6 @@ export default function Modal({ isOpen, onClose, title, icon, children }: ModalP
       </div>
     </div>
   );
-}
+};
 
+export default Modal;

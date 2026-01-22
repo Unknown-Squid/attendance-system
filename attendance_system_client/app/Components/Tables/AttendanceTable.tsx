@@ -25,7 +25,7 @@ interface AttendanceTableProps {
   showTime?: boolean;
 }
 
-export default function AttendanceTable({ 
+const AttendanceTable = ({ 
   records, 
   onRemove, 
   showQr = true, 
@@ -33,7 +33,7 @@ export default function AttendanceTable({
   showStatus = true,
   showDate = true,
   showTime = true
-}: AttendanceTableProps) {
+}: AttendanceTableProps) => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "present":
@@ -127,5 +127,7 @@ export default function AttendanceTable({
       </table>
     </div>
   );
-}
+};
+
+export default AttendanceTable;
 

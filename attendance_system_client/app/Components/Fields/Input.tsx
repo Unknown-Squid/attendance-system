@@ -31,6 +31,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
             ? "bg-zinc-50 dark:bg-zinc-800 cursor-default"
             : ""
         } ${className}`}
+        suppressHydrationWarning
         {...props}
       />
       {error && (

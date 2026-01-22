@@ -11,13 +11,13 @@ interface OverviewCardProps {
   iconColor?: string;
 }
 
-export default function OverviewCard({
+const OverviewCard = ({
   title,
   total,
   breakdown = [],
   icon,
   iconColor = "blue",
-}: OverviewCardProps) {
+}: OverviewCardProps) => {
   const colorClasses = {
     blue: "bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400",
     green: "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400",
@@ -55,6 +55,6 @@ export default function OverviewCard({
         </div>
       )}
     </div>
-  );
-}
+  );};
 
+export default OverviewCard;

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Modal from "./Modal";
 import Input from "@/app/Components/Fields/Input";
 import Select from "@/app/Components/Fields/Select";
-import Button from "@/app/Components/Buttons/Button";
+import Button from "@/app/Components/Fields/Buttons";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
 export interface AttendeeData {
@@ -21,11 +21,11 @@ interface RegisterAttendeeModalProps {
   onRegister: (data: AttendeeData) => void;
 }
 
-export default function RegisterAttendeeModal({
+const RegisterAttendeeModal = ({
   isOpen,
   onClose,
   onRegister,
-}: RegisterAttendeeModalProps) {
+}: RegisterAttendeeModalProps) => {
   const [surname, setSurname] = useState("");
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
@@ -237,5 +237,7 @@ export default function RegisterAttendeeModal({
       </form>
     </Modal>
   );
-}
+};
+
+export default RegisterAttendeeModal;
 

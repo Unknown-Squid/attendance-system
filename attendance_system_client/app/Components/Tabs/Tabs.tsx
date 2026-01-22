@@ -13,7 +13,7 @@ interface TabsProps {
   onTabChange: (tabId: string) => void;
 }
 
-export default function Tabs({ tabs, activeTab, onTabChange }: TabsProps) {
+const Tabs = ({ tabs, activeTab, onTabChange }: TabsProps) => {
   return (
     <div className="flex border-b border-zinc-200 dark:border-zinc-800">
       {tabs.map((tab) => (
@@ -30,6 +30,6 @@ export default function Tabs({ tabs, activeTab, onTabChange }: TabsProps) {
         </button>
       ))}
     </div>
-  );
-}
+  );};
 
+export default Tabs;

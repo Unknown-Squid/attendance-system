@@ -4,19 +4,21 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   error?: string;
   options: { value: string; label: string }[];
+  labelTextColor?: string;
 }
 
-export default function Select({
+const Select = ({
   label,
   error,
   options,
   className = "",
+  labelTextColor = "text-foreground", 
   ...props
-}: SelectProps) {
+}: SelectProps) => {
   return (
     <div className={className.includes("w-") ? "" : "w-full"}>
       {label && (
-        <label className="block text-sm font-medium mb-2 text-foreground">
+        <label className={`block text-sm font-medium mb-2 ${labelTextColor ? labelTextColor : "text-foreground"}`}>
           {label}
         </label>
       )}
@@ -32,8 +34,8 @@ export default function Select({
         } ${className}`}
         {...props}
       >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
+        {options.map((option, index) => (
+          <option key={`${option.value}-${index}`} value={option.value}>
             {option.label}
           </option>
         ))}
@@ -43,5 +45,7 @@ export default function Select({
       )}
     </div>
   );
-}
+};
+
+export default Select;
 

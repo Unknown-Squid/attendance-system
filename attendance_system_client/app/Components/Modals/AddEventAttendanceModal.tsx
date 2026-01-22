@@ -4,7 +4,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 import Input from "@/app/Components/Fields/Input";
 import Select from "@/app/Components/Fields/Select";
-import Button from "@/app/Components/Buttons/Button";
+import Button from "@/app/Components/Fields/Buttons";
 import { validateTimeRange } from "@/app/Utils/timeValidation";
 
 interface AddEventAttendanceModalProps {
@@ -22,11 +22,11 @@ export interface EventAttendanceData {
   semesterYear: string;
 }
 
-export default function AddEventAttendanceModal({
+const AddEventAttendanceModal = ({
   isOpen,
   onClose,
   onSubmit,
-}: AddEventAttendanceModalProps) {
+}: AddEventAttendanceModalProps) => {
   const [formData, setFormData] = useState<EventAttendanceData>({
     agenda: "",
     startTime: "",
@@ -264,5 +264,7 @@ export default function AddEventAttendanceModal({
       </form>
     </Modal>
   );
-}
+};
+
+export default AddEventAttendanceModal;
 

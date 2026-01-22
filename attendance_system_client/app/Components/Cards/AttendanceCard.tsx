@@ -29,7 +29,7 @@ const weekdays = [
   { value: "friday", label: "Friday" },
 ];
 
-export default function AttendanceCard({ data, type, category, onTakeAttendance, onDelete, onArchive }: AttendanceCardProps) {
+const AttendanceCard = ({ data, type, category, onTakeAttendance, onDelete, onArchive }: AttendanceCardProps) => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const isRegular = type === "regular";
   const regularData = isRegular ? (data as RegularAttendanceData) : null;
@@ -222,5 +222,7 @@ export default function AttendanceCard({ data, type, category, onTakeAttendance,
       />
     </>
   );
-}
+};
+
+export default AttendanceCard;
 

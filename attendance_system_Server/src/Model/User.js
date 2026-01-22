@@ -14,10 +14,20 @@ const User = sequelize.define('User', {
     allowNull: false,
     field: 'first_name'
   },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    field: 'last_name'
+  },
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    field: 'phone'
+  },
   role: {
-    type: DataTypes.ENUM('admin', 'teacher', 'student', 'staff'),
+    type: DataTypes.ENUM('admin', 'teacher'),
     allowNull: false,
-    defaultValue: 'student'
+    defaultValue: 'teacher'
   },
   email: {
     type: DataTypes.STRING,
@@ -33,6 +43,11 @@ const User = sequelize.define('User', {
     validate: {
       len: [6, 255] // Minimum 6 characters
     }
+  },
+  department: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    field: 'department'
   }
 }, {
   tableName: 'users',
@@ -54,6 +69,34 @@ User.associate = (models) => {
     User.hasMany(models.Session, {
       foreignKey: 'userId',
       as: 'sessions'
+    });
+  }
+  
+  if (models.Teacher) {
+    User.hasOne(models.Teacher, {
+      foreignKey: 'userId',
+      as: 'teacher'
+    });
+  }
+  
+  if (models.Attendee) {
+    User.hasOne(models.Attendee, {
+      foreignKey: 'userId',
+      as: 'attendee'
+    });
+  }
+  
+  if (models.AttendanceRoom) {
+    User.hasMany(models.AttendanceRoom, {
+      foreignKey: 'createdBy',
+      as: 'createdRooms'
+    });
+  }
+  
+  if (models.AttendanceRecord) {
+    User.hasMany(models.AttendanceRecord, {
+      foreignKey: 'markedBy',
+      as: 'markedRecords'
     });
   }
 };

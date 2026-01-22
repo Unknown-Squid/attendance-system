@@ -12,7 +12,7 @@ async function createTestUser() {
     await sequelize.sync({ alter: false });
     console.log('Models synchronized.');
 
-    // Test user data
+    // Test user data (only admin and teacher - students are now Attendees, not Users)
     const testUsers = [
       {
         firstName: 'Admin',
@@ -25,12 +25,6 @@ async function createTestUser() {
         email: 'teacher@test.com',
         password: 'teacher123',
         role: 'teacher'
-      },
-      {
-        firstName: 'Student',
-        email: 'student@test.com',
-        password: 'student123',
-        role: 'student'
       }
     ];
 
@@ -62,7 +56,7 @@ async function createTestUser() {
     console.log('\nLogin credentials:');
     console.log('Admin:   admin@test.com / admin123');
     console.log('Teacher: teacher@test.com / teacher123');
-    console.log('Student: student@test.com / student123');
+    console.log('\nNote: Students are now created as Attendees, not Users.');
 
     process.exit(0);
   } catch (error) {

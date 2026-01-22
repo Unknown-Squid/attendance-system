@@ -30,12 +30,12 @@ const weekdays = [
   { value: "friday", label: "Friday" },
 ];
 
-export default function AttendanceDetailsModal({
+const AttendanceDetailsModal = ({
   isOpen,
   onClose,
   data,
   type,
-}: AttendanceDetailsModalProps) {
+}: AttendanceDetailsModalProps) => {
   const isRegular = type === "regular";
   const regularData = isRegular ? (data as RegularAttendanceData) : null;
   const eventData = !isRegular ? (data as EventAttendanceData) : null;
@@ -276,5 +276,7 @@ export default function AttendanceDetailsModal({
       </div>
     </Modal>
   );
-}
+};
+
+export default AttendanceDetailsModal;
 

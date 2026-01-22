@@ -1,4 +1,4 @@
-export default function LogoIcon({ className }: { className?: string }) {
+const LogoIcon = ({ className }: { className?: string }) => {
   return (
     <svg
       className={className}
@@ -21,5 +21,7 @@ export default function LogoIcon({ className }: { className?: string }) {
       />
     </svg>
   );
-}
+};
+
+export default LogoIcon;
 

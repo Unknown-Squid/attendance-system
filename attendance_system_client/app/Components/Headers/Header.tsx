@@ -8,7 +8,7 @@ interface HeaderProps {
   subtitle?: string;
 }
 
-export default function Header({ title, subtitle }: HeaderProps) {
+const Header = ({ title, subtitle }: HeaderProps) => {
   const { user } = useAuth();
   
   return (
@@ -35,5 +35,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
       </div>
     </div>
   );
-}
+};
+
+export default Header;
 

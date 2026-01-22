@@ -1,6 +1,11 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require('../../Model/User');
 const Session = require('../../Model/Session');
+
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+const JWT_ACCESS_EXPIRY = process.env.JWT_ACCESS_EXPIRY || '15m';
+const JWT_REFRESH_EXPIRY = process.env.JWT_REFRESH_EXPIRY || '7d';
 
 class AuthService {
   /**
@@ -9,7 +14,7 @@ class AuthService {
    * @returns {Promise<Object>} Created user (without password)
    */
   async register(userData) {
-    const { firstName, role, email, password } = userData;
+    const { firstName, role, email, password, department } = userData;
 
     // Check if user already exists
     const existingUser = await User.findOne({ where: { email } });
@@ -25,23 +30,40 @@ class AuthService {
       firstName,
       role,
       email,
-      password: hashedPassword
+      password: hashedPassword,
+      department
     });
 
-    // Return user without password
+    // Generate JWT tokens
+    const accessToken = jwt.sign(
+      { userId: user.uuid, email: user.email, role: user.role },
+      JWT_SECRET,
+      { expiresIn: JWT_ACCESS_EXPIRY }
+    );
+
+    const refreshToken = jwt.sign(
+      { userId: user.uuid, type: 'refresh' },
+      JWT_SECRET,
+      { expiresIn: JWT_REFRESH_EXPIRY }
+    );
+
+    // Return user without password and tokens
     const userJson = user.toJSON();
     delete userJson.password;
-    return userJson;
+    return {
+      user: userJson,
+      accessToken,
+      refreshToken
+    };
   }
 
   /**
-   * Login user
+   * Login user and generate JWT tokens
    * @param {string} email - User email
    * @param {string} password - User password
-   * @param {Object} sessionData - Session metadata (ipAddress, userAgent)
-   * @returns {Promise<Object>} User data and session info (without password)
+   * @returns {Promise<Object>} User data and JWT tokens
    */
-  async login(email, password, sessionData = {}) {
+  async login(email, password) {
     // Find user by email
     const user = await User.findOne({ where: { email } });
     if (!user) {
@@ -54,25 +76,60 @@ class AuthService {
       throw new Error('Invalid email or password');
     }
 
-    // Create session (expires in 24 hours)
-    const expiresAt = new Date();
-    expiresAt.setHours(expiresAt.getHours() + 24);
+    // Generate JWT tokens
+    const accessToken = jwt.sign(
+      { userId: user.uuid, email: user.email, role: user.role },
+      JWT_SECRET,
+      { expiresIn: JWT_ACCESS_EXPIRY }
+    );
 
-    const session = await Session.create({
-      userId: user.uuid,
-      expiresAt,
-      ipAddress: sessionData.ipAddress || null,
-      userAgent: sessionData.userAgent || null
-    });
+    const refreshToken = jwt.sign(
+      { userId: user.uuid, type: 'refresh' },
+      JWT_SECRET,
+      { expiresIn: JWT_REFRESH_EXPIRY }
+    );
 
-    // Return user without password and session info
+    // Return user without password and tokens
     const userJson = user.toJSON();
     delete userJson.password;
     return {
       user: userJson,
-      sessionId: session.sessionId,
-      expiresAt: session.expiresAt
+      accessToken,
+      refreshToken
     };
+  }
+
+  /**
+   * Refresh access token
+   * @param {string} refreshToken - Refresh token
+   * @returns {Promise<Object>} New access token
+   */
+  async refreshToken(refreshToken) {
+    try {
+      // Verify refresh token
+      const decoded = jwt.verify(refreshToken, JWT_SECRET);
+      
+      if (decoded.type !== 'refresh') {
+        throw new Error('Invalid token type');
+      }
+
+      // Get user
+      const user = await User.findByPk(decoded.userId);
+      if (!user) {
+        throw new Error('User not found');
+      }
+
+      // Generate new access token
+      const accessToken = jwt.sign(
+        { userId: user.uuid, email: user.email, role: user.role },
+        JWT_SECRET,
+        { expiresIn: JWT_ACCESS_EXPIRY }
+      );
+
+      return { accessToken };
+    } catch (error) {
+      throw new Error('Invalid or expired refresh token');
+    }
   }
 
   /**

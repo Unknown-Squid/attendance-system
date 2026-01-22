@@ -9,10 +9,10 @@ interface ProtectedRouteProps {
   requiredRole?: "admin" | "teacher" | "student" | "staff";
 }
 
-export default function ProtectedRoute({
+const ProtectedRoute = ({
   children,
   requiredRole,
-}: ProtectedRouteProps) {
+}: ProtectedRouteProps) => {
   const { user, isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
 
@@ -49,6 +49,6 @@ export default function ProtectedRoute({
     return null;
   }
 
-  return <>{children}</>;
-}
+  return <>{children}</>;};
 
+export default ProtectedRoute;

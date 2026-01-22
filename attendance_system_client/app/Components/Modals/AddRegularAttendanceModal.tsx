@@ -4,7 +4,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 import Input from "@/app/Components/Fields/Input";
 import Select from "@/app/Components/Fields/Select";
-import Button from "@/app/Components/Buttons/Button";
+import Button from "@/app/Components/Fields/Buttons";
 import { validateTimeRange } from "@/app/Utils/timeValidation";
 
 interface AddRegularAttendanceModalProps {
@@ -36,11 +36,11 @@ const weekdays = [
   { value: "friday", label: "Friday" },
 ];
 
-export default function AddRegularAttendanceModal({
+const AddRegularAttendanceModal = ({
   isOpen,
   onClose,
   onSubmit,
-}: AddRegularAttendanceModalProps) {
+}: AddRegularAttendanceModalProps) => {
   const [formData, setFormData] = useState<RegularAttendanceData>({
     course: "",
     major: "",
@@ -484,5 +484,7 @@ export default function AddRegularAttendanceModal({
       </form>
     </Modal>
   );
-}
+};
+
+export default AddRegularAttendanceModal;
 

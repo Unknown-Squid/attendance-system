@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
-import Button from "@/app/Components/Buttons/Button";
+import Button from "@/app/Components/Fields/Buttons";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -11,6 +11,8 @@ interface CameraModalProps {
   isOpen: boolean;
   onClose: () => void;
   onCapture?: (imageData: string) => void;
+  isProcessing?: boolean;
+  processingError?: string | null;
 }
 
 interface DetectedRect {
@@ -21,7 +23,7 @@ interface DetectedRect {
   confidence: number;
 }
 
-export default function CameraModal({ isOpen, onClose, onCapture }: CameraModalProps) {
+const CameraModal = ({ isOpen, onClose, onCapture, isProcessing = false, processingError = null }: CameraModalProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const detectionCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -513,6 +515,27 @@ export default function CameraModal({ isOpen, onClose, onCapture }: CameraModalP
         {/* Hidden canvas for detection */}
         <canvas ref={detectionCanvasRef} className="hidden" />
 
+        {/* Processing Status */}
+        {isProcessing && (
+          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+            <div className="flex items-center gap-3">
+              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+              <p className="text-sm text-blue-700 dark:text-blue-300">
+                Processing ID image with OCR...
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Error Message */}
+        {processingError && (
+          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+            <p className="text-sm text-red-700 dark:text-red-300">
+              {processingError}
+            </p>
+          </div>
+        )}
+
         {/* Action Buttons */}
         <div className="flex gap-3 justify-end">
           {!capturedImage ? (
@@ -520,7 +543,7 @@ export default function CameraModal({ isOpen, onClose, onCapture }: CameraModalP
               variant="primary"
               onClick={captureImage}
               className="flex items-center gap-2"
-              disabled={!isStreaming}
+              disabled={!isStreaming || isProcessing}
             >
               <PhotoCameraIcon className="w-5 h-5" />
               {isAligned ? "Capture (Aligned)" : "Capture"}
@@ -530,6 +553,7 @@ export default function CameraModal({ isOpen, onClose, onCapture }: CameraModalP
               <Button
                 variant="outline"
                 onClick={handleRetake}
+                disabled={isProcessing}
               >
                 Retake
               </Button>
@@ -537,15 +561,18 @@ export default function CameraModal({ isOpen, onClose, onCapture }: CameraModalP
                 variant="primary"
                 onClick={handleClose}
                 className="flex items-center gap-2"
+                disabled={isProcessing}
               >
                 <PhotoCameraIcon className="w-5 h-5" />
-                Display
+                {isProcessing ? "Processing..." : "Display"}
               </Button>
             </>
           )}
         </div>
       </div>
-    </Modal>
+      </Modal>
   );
-}
+};
+
+export default CameraModal;
 
