@@ -13,7 +13,7 @@ export const usersPageStructure: ComponentInfo = {
         description: "requiredRole=admin",
         children: [
           {
-            id: "users-content",
+            id: "users-page-content",
             name: "UsersPageContent",
             type: "component",
             importPath: "@/app/(Pages)/users/page.tsx",
@@ -129,7 +129,7 @@ export const usersPageStructure: ComponentInfo = {
                                                     id: "menu-item-icon-users",
                                                     name: "IconComponent",
                                                     type: "element",
-                                                    description: "className=w-5 h-5",
+                                                    description: "className=w-5 h-5 (DashboardIcon/EventAvailableIcon/PeopleIcon/DescriptionIcon/AdminPanelSettingsIcon)",
                                                   },
                                                   {
                                                     id: "menu-item-label-users",
@@ -212,313 +212,426 @@ export const usersPageStructure: ComponentInfo = {
                       },
                     ],
                   },
-              {
-                id: "main-content-users",
-                name: "main",
-                type: "container",
-                description: "flex-1 overflow-y-auto",
-                children: [
                   {
-                    id: "content-wrapper-users",
-                    name: "div",
+                    id: "main-content-users",
+                    name: "main",
                     type: "container",
-                    description: "p-8",
+                    description: "flex-1 overflow-y-auto",
                     children: [
                       {
-                        id: "users-header",
-                        name: "Header",
-                        type: "component",
-                        importPath: "@/app/Components/Headers/Header",
-                        description: "title=User Management",
-                        children: [
-                          {
-                            id: "header-container-users",
-                            name: "div",
-                            type: "container",
-                            description: "mb-8 flex justify-between items-center h-fit w-full",
-                            children: [
-                              {
-                                id: "header-left-users",
-                                name: "div",
-                                type: "container",
-                                children: [
-                                  {
-                                    id: "header-title-users",
-                                    name: "h2",
-                                    type: "element",
-                                    description: "text-3xl font-bold text-foreground mb-2",
-                                  },
-                                  {
-                                    id: "header-subtitle-users",
-                                    name: "p",
-                                    type: "element",
-                                    description: "text-zinc-600 dark:text-zinc-400 (conditional subtitle)",
-                                  },
-                                ],
-                              },
-                              {
-                                id: "header-right-users",
-                                name: "div",
-                                type: "container",
-                                description: "mb-3 px-4 gap-4 flex h-full justify-center items-center",
-                                children: [
-                                  {
-                                    id: "user-info-header-users",
-                                    name: "div",
-                                    type: "container",
-                                    description: "h-fit w-fit flex flex-col",
-                                    children: [
-                                      {
-                                        id: "user-name-header-users",
-                                        name: "p",
-                                        type: "element",
-                                        description: "text-sm font-medium text-foreground",
-                                      },
-                                      {
-                                        id: "user-email-header-users",
-                                        name: "p",
-                                        type: "element",
-                                        description: "text-xs text-zinc-500 dark:text-zinc-400",
-                                      },
-                                    ],
-                                  },
-                                  {
-                                    id: "avatar-container-users",
-                                    name: "div",
-                                    type: "container",
-                                    description: "w-[50px] h-[50px] rounded-full overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center",
-                                    children: [
-                                      {
-                                        id: "person-icon-users",
-                                        name: "PersonIcon",
-                                        type: "element",
-                                        description: "className=w-8 h-8 text-zinc-600 dark:text-zinc-400",
-                                      },
-                                    ],
-                                  },
-                                ],
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                      {
-                        id: "filters-actions",
+                        id: "content-wrapper-users",
                         name: "div",
                         type: "container",
-                        description: "bg-white dark:bg-zinc-900 rounded-lg p-4 border border-zinc-200 dark:border-zinc-800 mb-6",
+                        description: "p-8",
                         children: [
                           {
-                            id: "filters-container",
-                            name: "div",
-                            type: "container",
-                            description: "flex items-end justify-between gap-4",
+                            id: "users-header",
+                            name: "Header",
+                            type: "component",
+                            importPath: "@/app/Components/Headers/Header",
+                            description: "title=User Management",
                             children: [
                               {
-                                id: "filter-search-left",
+                                id: "header-container-users",
                                 name: "div",
                                 type: "container",
-                                description: "flex flex-col gap-4 w-[20%]",
+                                description: "mb-8 flex justify-between items-center h-fit w-full",
                                 children: [
                                   {
-                                    id: "role-filter",
-                                    name: "Select",
-                                    type: "component",
-                                    importPath: "@/app/Components/Fields/Select",
-                                    description: "label=Filter by Role value=roleFilter onChange=setRoleFilter options=[All Roles, Admin, Teacher, Student, Staff]",
-                                  },
-                                  {
-                                    id: "search-container",
+                                    id: "header-left-users",
                                     name: "div",
                                     type: "container",
-                                    description: "relative",
                                     children: [
                                       {
-                                        id: "search-icon",
-                                        name: "SearchIcon",
+                                        id: "header-title-users",
+                                        name: "h2",
                                         type: "element",
-                                        description: "className=absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5",
+                                        description: "text-3xl font-bold text-foreground mb-2",
                                       },
                                       {
-                                        id: "search-input",
-                                        name: "Input",
-                                        type: "component",
-                                        importPath: "@/app/Components/Fields/Input",
-                                        description: "type=text placeholder=Search by name or email... value=searchTerm onChange=setSearchTerm className=pl-10",
+                                        id: "header-subtitle-users",
+                                        name: "p",
+                                        type: "element",
+                                        description: "text-zinc-600 dark:text-zinc-400 (conditional subtitle)",
                                       },
                                     ],
                                   },
-                                ],
-                              },
-                              {
-                                id: "add-user-button",
-                                name: "Button",
-                                type: "component",
-                                importPath: "@/app/Components/Fields/Buttons",
-                                description: "onClick=handleOpenModal className=w-fit",
-                                children: [
                                   {
-                                    id: "add-icon-button",
-                                    name: "AddIcon",
-                                    type: "element",
-                                    description: "className=w-5 h-5 mr-2",
-                                  },
-                                  {
-                                    id: "add-user-text",
-                                    name: "span",
-                                    type: "element",
-                                    description: "Add User",
-                                  },
-                                ],
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                      {
-                        id: "users-table-container",
-                        name: "div",
-                        type: "container",
-                        description: "bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 overflow-hidden",
-                        children: [
-                          {
-                            id: "loading-state-users",
-                            name: "div",
-                            type: "container",
-                            description: "p-8 text-center text-zinc-500 (conditional isLoading)",
-                          },
-                          {
-                            id: "empty-state-users",
-                            name: "div",
-                            type: "container",
-                            description: "p-8 text-center text-zinc-500 (conditional users.length===0)",
-                          },
-                          {
-                            id: "table-wrapper",
-                            name: "div",
-                            type: "container",
-                            description: "overflow-x-auto",
-                            children: [
-                              {
-                                id: "users-table",
-                                name: "table",
-                                type: "element",
-                                description: "w-full",
-                                children: [
-                                  {
-                                    id: "table-head",
-                                    name: "thead",
-                                    type: "element",
-                                    description: "bg-zinc-100 dark:bg-zinc-800",
+                                    id: "header-right-users",
+                                    name: "div",
+                                    type: "container",
+                                    description: "mb-3 px-4 gap-4 flex h-full justify-center items-center",
                                     children: [
                                       {
-                                        id: "table-row-head",
-                                        name: "tr",
-                                        type: "element",
+                                        id: "user-info-header-users",
+                                        name: "div",
+                                        type: "container",
+                                        description: "h-fit w-fit flex flex-col",
                                         children: [
                                           {
-                                            id: "th-name",
-                                            name: "th",
+                                            id: "user-name-header-users",
+                                            name: "p",
                                             type: "element",
-                                            description: "px-6 py-3 text-left text-xs font-medium text-zinc-700 uppercase tracking-wider",
+                                            description: "text-sm font-medium text-foreground",
                                           },
                                           {
-                                            id: "th-email",
-                                            name: "th",
+                                            id: "user-email-header-users",
+                                            name: "p",
                                             type: "element",
-                                            description: "px-6 py-3 text-left text-xs font-medium text-zinc-700 uppercase tracking-wider",
+                                            description: "text-xs text-zinc-500 dark:text-zinc-400",
+                                          },
+                                        ],
+                                      },
+                                      {
+                                        id: "avatar-container-users",
+                                        name: "div",
+                                        type: "container",
+                                        description: "w-[50px] h-[50px] rounded-full overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center",
+                                        children: [
+                                          {
+                                            id: "person-icon-users",
+                                            name: "PersonIcon",
+                                            type: "element",
+                                            description: "className=w-8 h-8 text-zinc-600 dark:text-zinc-400",
+                                          },
+                                        ],
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                          {
+                            id: "filters-actions-section",
+                            name: "div",
+                            type: "container",
+                            description: "bg-white dark:bg-zinc-900 rounded-lg p-4 border border-zinc-200 dark:border-zinc-800 mb-6",
+                            children: [
+                              {
+                                id: "filters-actions-row",
+                                name: "div",
+                                type: "container",
+                                description: "flex items-end justify-between gap-4",
+                                children: [
+                                  {
+                                    id: "filters-container",
+                                    name: "div",
+                                    type: "container",
+                                    description: "flex flex-col gap-4 w-[20%]",
+                                    children: [
+                                      {
+                                        id: "role-filter-select",
+                                        name: "Select",
+                                        type: "component",
+                                        importPath: "@/app/Components/Fields/Select",
+                                        description: "label=Filter by Role value=roleFilter onChange=setRoleFilter options=[All Roles, Admin, Teacher]",
+                                        children: [
+                                          {
+                                            id: "role-filter-wrapper",
+                                            name: "div",
+                                            type: "container",
+                                            description: "w-full",
+                                            children: [
+                                              {
+                                                id: "role-filter-label",
+                                                name: "label",
+                                                type: "element",
+                                                description: "block text-sm font-medium mb-2 text-foreground",
+                                              },
+                                              {
+                                                id: "role-filter-select-element",
+                                                name: "select",
+                                                type: "element",
+                                                description: "name=roleFilter className=w-full px-4 py-3 rounded-lg border",
+                                              },
+                                            ],
+                                          },
+                                        ],
+                                      },
+                                      {
+                                        id: "search-input-container",
+                                        name: "div",
+                                        type: "container",
+                                        description: "relative",
+                                        children: [
+                                          {
+                                            id: "search-icon",
+                                            name: "SearchIcon",
+                                            type: "element",
+                                            description: "className=absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-5 h-5",
                                           },
                                           {
-                                            id: "th-role",
-                                            name: "th",
-                                            type: "element",
-                                            description: "px-6 py-3 text-left text-xs font-medium text-zinc-700 uppercase tracking-wider",
-                                          },
-                                          {
-                                            id: "th-actions",
-                                            name: "th",
-                                            type: "element",
-                                            description: "px-6 py-3 text-left text-xs font-medium text-zinc-700 uppercase tracking-wider",
+                                            id: "search-input",
+                                            name: "Input",
+                                            type: "component",
+                                            importPath: "@/app/Components/Fields/Input",
+                                            description: "type=text placeholder=Search by name or email... value=searchTerm onChange=setSearchTerm className=pl-10",
+                                            children: [
+                                              {
+                                                id: "search-input-wrapper",
+                                                name: "div",
+                                                type: "container",
+                                                description: "w-full",
+                                                children: [
+                                                  {
+                                                    id: "search-input-element",
+                                                    name: "input",
+                                                    type: "element",
+                                                    description: "type=text name=searchTerm className=w-full px-4 py-3 rounded-lg border pl-10",
+                                                  },
+                                                ],
+                                              },
+                                            ],
                                           },
                                         ],
                                       },
                                     ],
                                   },
                                   {
-                                    id: "table-body",
-                                    name: "tbody",
-                                    type: "element",
-                                    description: "bg-white dark:bg-zinc-900 divide-y divide-zinc-200 dark:divide-zinc-800",
+                                    id: "action-buttons-container",
+                                    name: "div",
+                                    type: "container",
+                                    description: "w-fit flex gap-2",
                                     children: [
                                       {
-                                        id: "table-row",
-                                        name: "tr",
-                                        type: "element",
-                                        description: "hover:bg-zinc-50 dark:hover:bg-zinc-800 (mapped)",
+                                        id: "add-student-button",
+                                        name: "Button",
+                                        type: "component",
+                                        importPath: "@/app/Components/Fields/Buttons",
+                                        description: "onClick=handleOpenStudentModal variant=outline",
                                         children: [
                                           {
-                                            id: "td-name",
-                                            name: "td",
+                                            id: "add-student-button-element",
+                                            name: "button",
                                             type: "element",
-                                            description: "px-6 py-4 whitespace-nowrap text-sm text-foreground",
-                                          },
-                                          {
-                                            id: "td-email",
-                                            name: "td",
-                                            type: "element",
-                                            description: "px-6 py-4 whitespace-nowrap text-sm text-zinc-600",
-                                          },
-                                          {
-                                            id: "td-role",
-                                            name: "td",
-                                            type: "container",
-                                            description: "px-6 py-4 whitespace-nowrap",
+                                            description: "type=button className=px-6 py-3 rounded-lg font-medium border-2 border-foreground text-foreground hover:bg-foreground hover:text-background",
                                             children: [
                                               {
-                                                id: "role-badge",
+                                                id: "add-student-icon",
+                                                name: "AddIcon",
+                                                type: "element",
+                                                description: "className=w-5 h-5 mr-2",
+                                              },
+                                              {
+                                                id: "add-student-text",
                                                 name: "span",
                                                 type: "element",
-                                                description: "px-2 py-1 text-xs font-semibold rounded-full",
+                                                description: "Add Student",
                                               },
                                             ],
                                           },
+                                        ],
+                                      },
+                                      {
+                                        id: "add-user-button",
+                                        name: "Button",
+                                        type: "component",
+                                        importPath: "@/app/Components/Fields/Buttons",
+                                        description: "onClick=handleOpenModal variant=primary",
+                                        children: [
                                           {
-                                            id: "td-actions",
-                                            name: "td",
-                                            type: "container",
-                                            description: "px-6 py-4 whitespace-nowrap text-sm font-medium",
+                                            id: "add-user-button-element",
+                                            name: "button",
+                                            type: "element",
+                                            description: "type=button className=px-6 py-3 rounded-lg font-medium bg-foreground text-background hover:opacity-90",
                                             children: [
                                               {
-                                                id: "actions-container",
-                                                name: "div",
-                                                type: "container",
-                                                description: "flex items-center gap-2",
+                                                id: "add-user-icon",
+                                                name: "AddIcon",
+                                                type: "element",
+                                                description: "className=w-5 h-5 mr-2",
+                                              },
+                                              {
+                                                id: "add-user-text",
+                                                name: "span",
+                                                type: "element",
+                                                description: "Add User",
+                                              },
+                                            ],
+                                          },
+                                        ],
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                          {
+                            id: "users-table-section",
+                            name: "div",
+                            type: "container",
+                            description: "bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 overflow-hidden",
+                            children: [
+                              {
+                                id: "loading-state-users",
+                                name: "div",
+                                type: "container",
+                                description: "p-8 text-center text-zinc-500 dark:text-zinc-400 (conditional isLoading)",
+                                children: [
+                                  {
+                                    id: "loading-text",
+                                    name: "p",
+                                    type: "element",
+                                    description: "Loading users...",
+                                  },
+                                ],
+                              },
+                              {
+                                id: "empty-state-users",
+                                name: "div",
+                                type: "container",
+                                description: "p-8 text-center text-zinc-500 dark:text-zinc-400 (conditional !isLoading && users.length===0)",
+                                children: [
+                                  {
+                                    id: "empty-text",
+                                    name: "p",
+                                    type: "element",
+                                    description: "No users found",
+                                  },
+                                ],
+                              },
+                              {
+                                id: "table-container-users",
+                                name: "div",
+                                type: "container",
+                                description: "overflow-x-auto (conditional !isLoading && users.length>0)",
+                                children: [
+                                  {
+                                    id: "users-table",
+                                    name: "table",
+                                    type: "element",
+                                    description: "w-full",
+                                    children: [
+                                      {
+                                        id: "table-head-users",
+                                        name: "thead",
+                                        type: "element",
+                                        description: "bg-zinc-100 dark:bg-zinc-800",
+                                        children: [
+                                          {
+                                            id: "table-header-row-users",
+                                            name: "tr",
+                                            type: "element",
+                                            children: [
+                                              {
+                                                id: "header-name-users",
+                                                name: "th",
+                                                type: "element",
+                                                description: "px-6 py-3 text-left text-xs font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider",
+                                              },
+                                              {
+                                                id: "header-email-users",
+                                                name: "th",
+                                                type: "element",
+                                                description: "px-6 py-3 text-left text-xs font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider",
+                                              },
+                                              {
+                                                id: "header-role-users",
+                                                name: "th",
+                                                type: "element",
+                                                description: "px-6 py-3 text-left text-xs font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider",
+                                              },
+                                              {
+                                                id: "header-department-users",
+                                                name: "th",
+                                                type: "element",
+                                                description: "px-6 py-3 text-left text-xs font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider",
+                                              },
+                                              {
+                                                id: "header-actions-users",
+                                                name: "th",
+                                                type: "element",
+                                                description: "px-6 py-3 text-left text-xs font-medium text-zinc-700 dark:text-zinc-300 uppercase tracking-wider",
+                                              },
+                                            ],
+                                          },
+                                        ],
+                                      },
+                                      {
+                                        id: "table-body-users",
+                                        name: "tbody",
+                                        type: "element",
+                                        description: "bg-white dark:bg-zinc-900 divide-y divide-zinc-200 dark:divide-zinc-800",
+                                        children: [
+                                          {
+                                            id: "table-row-mapped-users",
+                                            name: "tr",
+                                            type: "element",
+                                            description: "(mapped users) key=user.uuid hover:bg-zinc-50 dark:hover:bg-zinc-800",
+                                            children: [
+                                              {
+                                                id: "cell-name-users",
+                                                name: "td",
+                                                type: "element",
+                                                description: "px-6 py-4 whitespace-nowrap text-sm text-foreground",
+                                              },
+                                              {
+                                                id: "cell-email-users",
+                                                name: "td",
+                                                type: "element",
+                                                description: "px-6 py-4 whitespace-nowrap text-sm text-zinc-600 dark:text-zinc-400",
+                                              },
+                                              {
+                                                id: "cell-role-users",
+                                                name: "td",
+                                                type: "element",
+                                                description: "px-6 py-4 whitespace-nowrap",
                                                 children: [
                                                   {
-                                                    id: "edit-button",
-                                                    name: "button",
+                                                    id: "role-badge",
+                                                    name: "span",
                                                     type: "element",
-                                                    description: "onClick=handleOpenModal className=text-blue-600 hover:text-blue-900 title=Edit",
-                                                    children: [
-                                                      {
-                                                        id: "edit-icon",
-                                                        name: "EditIcon",
-                                                        type: "element",
-                                                        description: "className=w-5 h-5",
-                                                      },
-                                                    ],
+                                                    description: "px-2 py-1 text-xs font-semibold rounded-full (conditional role colors)",
                                                   },
+                                                ],
+                                              },
+                                              {
+                                                id: "cell-department-users",
+                                                name: "td",
+                                                type: "element",
+                                                description: "px-6 py-4 whitespace-nowrap text-sm text-zinc-600 dark:text-zinc-400",
+                                              },
+                                              {
+                                                id: "cell-actions-users",
+                                                name: "td",
+                                                type: "element",
+                                                description: "px-6 py-4 whitespace-nowrap text-sm font-medium",
+                                                children: [
                                                   {
-                                                    id: "delete-button",
-                                                    name: "button",
-                                                    type: "element",
-                                                    description: "onClick=handleOpenDeleteModal className=text-red-600 hover:text-red-900 title=Delete (conditional user.uuid !== currentUser?.uuid)",
+                                                    id: "actions-container",
+                                                    name: "div",
+                                                    type: "container",
+                                                    description: "flex items-center gap-2",
                                                     children: [
                                                       {
-                                                        id: "delete-icon",
-                                                        name: "DeleteIcon",
+                                                        id: "edit-button",
+                                                        name: "button",
                                                         type: "element",
-                                                        description: "className=w-5 h-5",
+                                                        description: "onClick=handleOpenModal(user) className=text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 title=Edit",
+                                                        children: [
+                                                          {
+                                                            id: "edit-icon",
+                                                            name: "EditIcon",
+                                                            type: "element",
+                                                            description: "className=w-5 h-5",
+                                                          },
+                                                        ],
+                                                      },
+                                                      {
+                                                        id: "delete-button-users",
+                                                        name: "button",
+                                                        type: "element",
+                                                        description: "onClick=handleOpenDeleteModal(user) className=text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 title=Delete (conditional user.uuid!==currentUser?.uuid)",
+                                                        children: [
+                                                          {
+                                                            id: "delete-icon-users",
+                                                            name: "DeleteIcon",
+                                                            type: "element",
+                                                            description: "className=w-5 h-5",
+                                                          },
+                                                        ],
                                                       },
                                                     ],
                                                   },
@@ -538,341 +651,45 @@ export const usersPageStructure: ComponentInfo = {
                       },
                     ],
                   },
-                ],
-              },
-              {
-                id: "create-edit-modal",
-                name: "Modal",
-                type: "component",
-                importPath: "@/app/Components/Modals/Modal",
-                description: "isOpen=isModalOpen onClose=handleCloseModal title=editingUser ? Edit User : Add User",
-                children: [
                   {
-                    id: "modal-backdrop",
-                    name: "div",
-                    type: "container",
-                    description: "fixed inset-0 z-50 flex items-center justify-center",
-                    children: [
-                      {
-                        id: "backdrop-overlay",
-                        name: "div",
-                        type: "container",
-                        description: "absolute inset-0 bg-black/50 backdrop-blur-sm onClick=onClose",
-                      },
-                      {
-                        id: "modal-content",
-                        name: "div",
-                        type: "container",
-                        description: "relative bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 w-full max-w-2xl max-h-[90vh] overflow-y-auto z-10 m-4",
-                        children: [
-                          {
-                            id: "modal-header",
-                            name: "div",
-                            type: "container",
-                            description: "flex items-center justify-between p-6 border-b border-zinc-200 dark:border-zinc-800",
-                            children: [
-                              {
-                                id: "modal-title-container",
-                                name: "div",
-                                type: "container",
-                                description: "flex items-center gap-3",
-                                children: [
-                                  {
-                                    id: "modal-icon",
-                                    name: "icon",
-                                    type: "element",
-                                    description: "(conditional)",
-                                  },
-                                  {
-                                    id: "modal-title",
-                                    name: "h2",
-                                    type: "element",
-                                    description: "text-2xl font-bold text-foreground",
-                                  },
-                                ],
-                              },
-                              {
-                                id: "modal-close-button",
-                                name: "button",
-                                type: "element",
-                                description: "onClick=onClose className=p-2 rounded-lg hover:bg-zinc-100",
-                                children: [
-                                  {
-                                    id: "close-icon",
-                                    name: "CloseIcon",
-                                    type: "element",
-                                    description: "className=w-5 h-5",
-                                  },
-                                ],
-                              },
-                            ],
-                          },
-                          {
-                            id: "modal-body",
-                            name: "div",
-                            type: "container",
-                            description: "p-6",
-                            children: [
-                              {
-                                id: "form-fields",
-                                name: "div",
-                                type: "container",
-                                description: "space-y-4",
-                                children: [
-                                  {
-                                    id: "first-name-input",
-                                    name: "Input",
-                                    type: "component",
-                                    importPath: "@/app/Components/Fields/Input",
-                                    description: "label=First Name value=formData.firstName onChange=setFormData error=errors.firstName",
-                                    children: [
-                                      {
-                                        id: "input-wrapper-firstname-modal",
-                                        name: "div",
-                                        type: "container",
-                                        description: "w-full",
-                                        children: [
-                                          {
-                                            id: "input-label-firstname-modal",
-                                            name: "label",
-                                            type: "element",
-                                            description: "block text-sm font-medium mb-2 text-foreground",
-                                          },
-                                          {
-                                            id: "input-element-firstname-modal",
-                                            name: "input",
-                                            type: "element",
-                                            description: "w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:border-foreground focus:ring-2 focus:ring-foreground/20 bg-white dark:bg-zinc-900 text-foreground placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none transition-colors",
-                                          },
-                                          {
-                                            id: "input-error-firstname-modal",
-                                            name: "p",
-                                            type: "element",
-                                            description: "mt-1 text-sm text-red-500 dark:text-red-400 (conditional error)",
-                                          },
-                                        ],
-                                      },
-                                    ],
-                                  },
-                                  {
-                                    id: "email-input-modal",
-                                    name: "Input",
-                                    type: "component",
-                                    importPath: "@/app/Components/Fields/Input",
-                                    description: "label=Email type=email value=formData.email onChange=setFormData error=errors.email",
-                                    children: [
-                                      {
-                                        id: "input-wrapper-email-modal",
-                                        name: "div",
-                                        type: "container",
-                                        description: "w-full",
-                                        children: [
-                                          {
-                                            id: "input-label-email-modal",
-                                            name: "label",
-                                            type: "element",
-                                            description: "block text-sm font-medium mb-2 text-foreground",
-                                          },
-                                          {
-                                            id: "input-element-email-modal",
-                                            name: "input",
-                                            type: "element",
-                                            description: "type=email w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:border-foreground focus:ring-2 focus:ring-foreground/20 bg-white dark:bg-zinc-900 text-foreground placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none transition-colors",
-                                          },
-                                          {
-                                            id: "input-error-email-modal",
-                                            name: "p",
-                                            type: "element",
-                                            description: "mt-1 text-sm text-red-500 dark:text-red-400 (conditional error)",
-                                          },
-                                        ],
-                                      },
-                                    ],
-                                  },
-                                  {
-                                    id: "role-select",
-                                    name: "Select",
-                                    type: "component",
-                                    importPath: "@/app/Components/Fields/Select",
-                                    description: "label=Role value=formData.role onChange=setFormData options=[Admin, Teacher, Student, Staff]",
-                                    children: [
-                                      {
-                                        id: "select-wrapper-role-modal",
-                                        name: "div",
-                                        type: "container",
-                                        description: "w-full",
-                                        children: [
-                                          {
-                                            id: "select-label-role-modal",
-                                            name: "label",
-                                            type: "element",
-                                            description: "block text-sm font-medium mb-2 text-foreground",
-                                          },
-                                          {
-                                            id: "select-element-role-modal",
-                                            name: "select",
-                                            type: "element",
-                                            description: "w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:border-foreground focus:ring-2 focus:ring-foreground/20 bg-white dark:bg-zinc-900 text-foreground focus:outline-none transition-colors",
-                                            children: [
-                                              {
-                                                id: "select-option-role-modal",
-                                                name: "option",
-                                                type: "element",
-                                                description: "(mapped options) key=value-index value=option.value",
-                                              },
-                                            ],
-                                          },
-                                          {
-                                            id: "select-error-role-modal",
-                                            name: "p",
-                                            type: "element",
-                                            description: "mt-1 text-sm text-red-500 dark:text-red-400 (conditional error)",
-                                          },
-                                        ],
-                                      },
-                                    ],
-                                  },
-                                  {
-                                    id: "password-input-modal",
-                                    name: "Input",
-                                    type: "component",
-                                    importPath: "@/app/Components/Fields/Input",
-                                    description: "label=New Password (leave empty to keep current) / Password type=password value=formData.password onChange=setFormData error=errors.password",
-                                    children: [
-                                      {
-                                        id: "input-wrapper-password-modal",
-                                        name: "div",
-                                        type: "container",
-                                        description: "w-full",
-                                        children: [
-                                          {
-                                            id: "input-label-password-modal",
-                                            name: "label",
-                                            type: "element",
-                                            description: "block text-sm font-medium mb-2 text-foreground",
-                                          },
-                                          {
-                                            id: "input-element-password-modal",
-                                            name: "input",
-                                            type: "element",
-                                            description: "type=password w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:border-foreground focus:ring-2 focus:ring-foreground/20 bg-white dark:bg-zinc-900 text-foreground placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none transition-colors",
-                                          },
-                                          {
-                                            id: "input-error-password-modal",
-                                            name: "p",
-                                            type: "element",
-                                            description: "mt-1 text-sm text-red-500 dark:text-red-400 (conditional error)",
-                                          },
-                                        ],
-                                      },
-                                    ],
-                                  },
-                                  {
-                                    id: "submit-error",
-                                    name: "div",
-                                    type: "container",
-                                    description: "text-red-600 dark:text-red-400 text-sm (conditional errors.submit)",
-                                  },
-                                  {
-                                    id: "modal-actions",
-                                    name: "div",
-                                    type: "container",
-                                    description: "flex justify-end gap-3 pt-4",
-                                    children: [
-                                      {
-                                        id: "cancel-button",
-                                        name: "Button",
-                                        type: "component",
-                                        importPath: "@/app/Components/Fields/Buttons",
-                                        description: "variant=outline onClick=handleCloseModal",
-                                        children: [
-                                          {
-                                            id: "cancel-text",
-                                            name: "span",
-                                            type: "element",
-                                            description: "Cancel",
-                                          },
-                                        ],
-                                      },
-                                      {
-                                        id: "submit-button-modal",
-                                        name: "Button",
-                                        type: "component",
-                                        importPath: "@/app/Components/Fields/Buttons",
-                                        description: "onClick=handleSubmit",
-                                        children: [
-                                          {
-                                            id: "submit-text",
-                                            name: "span",
-                                            type: "element",
-                                            description: "Update / Create",
-                                          },
-                                        ],
-                                      },
-                                    ],
-                                  },
-                                ],
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                id: "delete-confirmation-modal",
-                name: "ConfirmationModal",
-                type: "component",
-                importPath: "@/app/Components/Modals/ConfirmationModal",
-                description: "isOpen=isDeleteModalOpen onClose=handleCloseDeleteModal onConfirm=handleDelete title=Delete User message=Are you sure you want to delete... icon=DeleteIcon danger confirmLabel=Delete",
-                children: [
-                  {
-                    id: "confirmation-modal-wrapper",
+                    id: "create-edit-modal-users",
                     name: "Modal",
                     type: "component",
                     importPath: "@/app/Components/Modals/Modal",
-                    description: "isOpen=isOpen onClose=onClose title=title icon=icon",
+                    description: "isOpen=isModalOpen onClose=handleCloseModal title=(conditional isStudentForm ? Add Student : editingUser ? Edit User : Add User)",
                     children: [
                       {
-                        id: "confirmation-modal-backdrop",
+                        id: "modal-backdrop-users",
                         name: "div",
                         type: "container",
                         description: "fixed inset-0 z-50 flex items-center justify-center",
                         children: [
                           {
-                            id: "confirmation-backdrop-overlay",
+                            id: "backdrop-overlay-users",
                             name: "div",
                             type: "container",
                             description: "absolute inset-0 bg-black/50 backdrop-blur-sm onClick=onClose",
                           },
                           {
-                            id: "confirmation-modal-content",
+                            id: "modal-content-users",
                             name: "div",
                             type: "container",
                             description: "relative bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 w-full max-w-2xl max-h-[90vh] overflow-y-auto z-10 m-4",
                             children: [
                               {
-                                id: "confirmation-modal-header",
+                                id: "modal-header-users",
                                 name: "div",
                                 type: "container",
                                 description: "flex items-center justify-between p-6 border-b border-zinc-200 dark:border-zinc-800",
                                 children: [
                                   {
-                                    id: "confirmation-modal-title-container",
+                                    id: "modal-title-container-users",
                                     name: "div",
                                     type: "container",
                                     description: "flex items-center gap-3",
                                     children: [
                                       {
-                                        id: "confirmation-modal-icon",
-                                        name: "div",
-                                        type: "container",
-                                        description: "text-foreground (conditional icon)",
-                                      },
-                                      {
-                                        id: "confirmation-modal-title",
+                                        id: "modal-title-users",
                                         name: "h2",
                                         type: "element",
                                         description: "text-2xl font-bold text-foreground",
@@ -880,13 +697,13 @@ export const usersPageStructure: ComponentInfo = {
                                     ],
                                   },
                                   {
-                                    id: "confirmation-modal-close-button",
+                                    id: "modal-close-button-users",
                                     name: "button",
                                     type: "element",
                                     description: "onClick=onClose className=p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-600 dark:text-zinc-400 hover:text-foreground",
                                     children: [
                                       {
-                                        id: "confirmation-close-icon",
+                                        id: "close-icon-users",
                                         name: "CloseIcon",
                                         type: "element",
                                         description: "className=w-5 h-5",
@@ -896,78 +713,403 @@ export const usersPageStructure: ComponentInfo = {
                                 ],
                               },
                               {
-                                id: "confirmation-modal-body",
+                                id: "modal-body-users",
                                 name: "div",
                                 type: "container",
                                 description: "p-6",
                                 children: [
                                   {
-                                    id: "confirmation-content-wrapper",
+                                    id: "modal-form-container",
                                     name: "div",
                                     type: "container",
-                                    description: "space-y-6",
+                                    description: "space-y-4",
                                     children: [
                                       {
-                                        id: "confirmation-message-container",
+                                        id: "student-form-fields",
                                         name: "div",
                                         type: "container",
-                                        description: "flex items-left space-y-4",
+                                        description: "(conditional isStudentForm)",
                                         children: [
                                           {
-                                            id: "confirmation-message",
-                                            name: "p",
-                                            type: "element",
-                                            description: "text-left text-base",
-                                          },
-                                        ],
-                                      },
-                                      {
-                                        id: "confirmation-actions",
-                                        name: "div",
-                                        type: "container",
-                                        description: "flex justify-end gap-3 pt-4 border-t border-zinc-200 dark:border-zinc-800",
-                                        children: [
-                                          {
-                                            id: "confirmation-cancel-button",
-                                            name: "Button",
+                                            id: "surname-input-student",
+                                            name: "Input",
                                             type: "component",
-                                            importPath: "@/app/Components/Fields/Buttons",
-                                            description: "type=button variant=outline onClick=onClose (conditional cancelLabel)",
+                                            importPath: "@/app/Components/Fields/Input",
+                                            description: "label=Surname value=studentFormData.surname onChange=setStudentFormData error=errors.surname placeholder=Enter surname required",
+                                          },
+                                          {
+                                            id: "first-name-input-student",
+                                            name: "Input",
+                                            type: "component",
+                                            importPath: "@/app/Components/Fields/Input",
+                                            description: "label=First Name value=studentFormData.firstName onChange=setStudentFormData error=errors.firstName placeholder=Enter first name required",
+                                          },
+                                          {
+                                            id: "middle-name-section-student",
+                                            name: "div",
+                                            type: "container",
+                                            description: "space-y-2",
                                             children: [
                                               {
-                                                id: "confirmation-cancel-button-element",
-                                                name: "button",
-                                                type: "element",
-                                                description: "type=button className=px-6 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed border-2 border-foreground text-foreground hover:bg-foreground hover:text-background focus:ring-foreground",
+                                                id: "middle-name-row",
+                                                name: "div",
+                                                type: "container",
+                                                description: "flex items-center gap-3",
                                                 children: [
                                                   {
-                                                    id: "confirmation-cancel-text",
-                                                    name: "span",
-                                                    type: "element",
-                                                    description: "cancelLabel",
+                                                    id: "middle-name-input-student",
+                                                    name: "Input",
+                                                    type: "component",
+                                                    importPath: "@/app/Components/Fields/Input",
+                                                    description: "label=Middle Name value=studentFormData.middleName onChange=setStudentFormData error=errors.middleName placeholder=Enter middle name disabled=studentFormData.noMiddleName required=!studentFormData.noMiddleName className=flex-1",
+                                                  },
+                                                  {
+                                                    id: "no-middle-name-checkbox",
+                                                    name: "div",
+                                                    type: "container",
+                                                    description: "flex items-center gap-2 pt-7",
+                                                    children: [
+                                                      {
+                                                        id: "checkbox-input",
+                                                        name: "input",
+                                                        type: "element",
+                                                        description: "type=checkbox id=noMiddleName checked=studentFormData.noMiddleName onChange=handleNoMiddleNameChange className=w-4 h-4 rounded border-zinc-300",
+                                                      },
+                                                      {
+                                                        id: "checkbox-label",
+                                                        name: "label",
+                                                        type: "element",
+                                                        description: "htmlFor=noMiddleName className=text-sm text-foreground cursor-pointer whitespace-nowrap",
+                                                      },
+                                                    ],
                                                   },
                                                 ],
                                               },
                                             ],
                                           },
                                           {
-                                            id: "confirmation-confirm-button",
+                                            id: "student-number-sex-grid",
+                                            name: "div",
+                                            type: "container",
+                                            description: "grid grid-cols-2 gap-4",
+                                            children: [
+                                              {
+                                                id: "student-number-input",
+                                                name: "Input",
+                                                type: "component",
+                                                importPath: "@/app/Components/Fields/Input",
+                                                description: "label=Student Number value=studentFormData.studentNumber onChange=setStudentFormData error=errors.studentNumber placeholder=Enter student number required",
+                                              },
+                                              {
+                                                id: "sex-select-student",
+                                                name: "Select",
+                                                type: "component",
+                                                importPath: "@/app/Components/Fields/Select",
+                                                description: "label=Sex value=studentFormData.sex onChange=setStudentFormData options=[Male, Female, Other]",
+                                              },
+                                            ],
+                                          },
+                                          {
+                                            id: "course-select-student",
+                                            name: "Select",
+                                            type: "component",
+                                            importPath: "@/app/Components/Fields/Select",
+                                            description: "label=Course value=studentFormData.course onChange=setStudentFormData error=errors.course options=[BSIT, BSCS, BSCE, BSEE] required",
+                                          },
+                                          {
+                                            id: "year-level-section-grid",
+                                            name: "div",
+                                            type: "container",
+                                            description: "grid grid-cols-2 gap-4",
+                                            children: [
+                                              {
+                                                id: "year-level-select",
+                                                name: "Select",
+                                                type: "component",
+                                                importPath: "@/app/Components/Fields/Select",
+                                                description: "label=Year Level value=studentFormData.yearLevel onChange=setStudentFormData error=errors.yearLevel options=[1st Year, 2nd Year, 3rd Year, 4th Year] required",
+                                              },
+                                              {
+                                                id: "section-select",
+                                                name: "Select",
+                                                type: "component",
+                                                importPath: "@/app/Components/Fields/Select",
+                                                description: "label=Section value=studentFormData.section onChange=setStudentFormData error=errors.section options=[Section A, Section B, Section C, Section D] required",
+                                              },
+                                            ],
+                                          },
+                                        ],
+                                      },
+                                      {
+                                        id: "user-form-fields",
+                                        name: "div",
+                                        type: "container",
+                                        description: "(conditional !isStudentForm)",
+                                        children: [
+                                          {
+                                            id: "first-name-input-user",
+                                            name: "Input",
+                                            type: "component",
+                                            importPath: "@/app/Components/Fields/Input",
+                                            description: "label=First Name value=formData.firstName onChange=setFormData error=errors.firstName",
+                                          },
+                                          {
+                                            id: "email-input-user",
+                                            name: "Input",
+                                            type: "component",
+                                            importPath: "@/app/Components/Fields/Input",
+                                            description: "label=Email type=email value=formData.email onChange=setFormData error=errors.email",
+                                          },
+                                          {
+                                            id: "role-select-user",
+                                            name: "Select",
+                                            type: "component",
+                                            importPath: "@/app/Components/Fields/Select",
+                                            description: "label=Role value=formData.role onChange=setFormData options=[Admin, Teacher]",
+                                          },
+                                          {
+                                            id: "department-select-user",
+                                            name: "Select",
+                                            type: "component",
+                                            importPath: "@/app/Components/Fields/Select",
+                                            description: "label=Department value=formData.department onChange=setFormData options=[CS, IT, CE, EE]",
+                                          },
+                                          {
+                                            id: "password-input-user",
+                                            name: "Input",
+                                            type: "component",
+                                            importPath: "@/app/Components/Fields/Input",
+                                            description: "label=(conditional editingUser ? New Password (leave empty to keep current) : Password) type=password value=formData.password onChange=setFormData error=errors.password",
+                                          },
+                                        ],
+                                      },
+                                      {
+                                        id: "submit-error",
+                                        name: "div",
+                                        type: "container",
+                                        description: "text-red-600 dark:text-red-400 text-sm (conditional errors.submit)",
+                                        children: [
+                                          {
+                                            id: "submit-error-text",
+                                            name: "p",
+                                            type: "element",
+                                            description: "errors.submit",
+                                          },
+                                        ],
+                                      },
+                                      {
+                                        id: "modal-actions",
+                                        name: "div",
+                                        type: "container",
+                                        description: "flex justify-end gap-3 pt-4",
+                                        children: [
+                                          {
+                                            id: "cancel-button-modal",
                                             name: "Button",
                                             type: "component",
                                             importPath: "@/app/Components/Fields/Buttons",
-                                            description: "type=button variant=(danger ? primary : confirmVariant) onClick=handleConfirm className=(danger ? bg-red-600 hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700 : '')",
+                                            description: "variant=outline onClick=handleCloseModal",
                                             children: [
                                               {
-                                                id: "confirmation-confirm-button-element",
+                                                id: "cancel-button-element-modal",
                                                 name: "button",
                                                 type: "element",
-                                                description: "type=button className=px-6 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] focus:ring-foreground (conditional danger styling)",
+                                                description: "type=button className=px-6 py-3 rounded-lg font-medium border-2 border-foreground text-foreground hover:bg-foreground hover:text-background",
                                                 children: [
                                                   {
-                                                    id: "confirmation-confirm-text",
+                                                    id: "cancel-text-modal",
                                                     name: "span",
                                                     type: "element",
-                                                    description: "confirmLabel",
+                                                    description: "Cancel",
+                                                  },
+                                                ],
+                                              },
+                                            ],
+                                          },
+                                          {
+                                            id: "submit-button-modal",
+                                            name: "Button",
+                                            type: "component",
+                                            importPath: "@/app/Components/Fields/Buttons",
+                                            description: "onClick=handleSubmit variant=primary",
+                                            children: [
+                                              {
+                                                id: "submit-button-element-modal",
+                                                name: "button",
+                                                type: "element",
+                                                description: "type=button className=px-6 py-3 rounded-lg font-medium bg-foreground text-background hover:opacity-90",
+                                                children: [
+                                                  {
+                                                    id: "submit-text-modal",
+                                                    name: "span",
+                                                    type: "element",
+                                                    description: "(conditional isStudentForm ? Create : editingUser ? Update : Create)",
+                                                  },
+                                                ],
+                                              },
+                                            ],
+                                          },
+                                        ],
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    id: "delete-confirmation-modal-users",
+                    name: "ConfirmationModal",
+                    type: "component",
+                    importPath: "@/app/Components/Modals/ConfirmationModal",
+                    description: "isOpen=isDeleteModalOpen onClose=setIsDeleteModalOpen(false) onConfirm=handleDelete title=Delete User message=(conditional deletingUser?.firstName) icon=DeleteIcon danger confirmLabel=Delete",
+                    children: [
+                      {
+                        id: "confirmation-modal-base-users",
+                        name: "Modal",
+                        type: "component",
+                        importPath: "@/app/Components/Modals/Modal",
+                        description: "isOpen=isOpen onClose=onClose title=title icon=icon",
+                        children: [
+                          {
+                            id: "confirmation-modal-backdrop-users",
+                            name: "div",
+                            type: "container",
+                            description: "fixed inset-0 z-50 flex items-center justify-center",
+                            children: [
+                              {
+                                id: "confirmation-backdrop-overlay-users",
+                                name: "div",
+                                type: "container",
+                                description: "absolute inset-0 bg-black/50 backdrop-blur-sm onClick=onClose",
+                              },
+                              {
+                                id: "confirmation-modal-content-users",
+                                name: "div",
+                                type: "container",
+                                description: "relative bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 w-full max-w-2xl max-h-[90vh] overflow-y-auto z-10 m-4",
+                                children: [
+                                  {
+                                    id: "confirmation-modal-header-users",
+                                    name: "div",
+                                    type: "container",
+                                    description: "flex items-center justify-between p-6 border-b border-zinc-200 dark:border-zinc-800",
+                                    children: [
+                                      {
+                                        id: "confirmation-modal-title-container-users",
+                                        name: "div",
+                                        type: "container",
+                                        description: "flex items-center gap-3",
+                                        children: [
+                                          {
+                                            id: "confirmation-modal-icon-users",
+                                            name: "DeleteIcon",
+                                            type: "element",
+                                            description: "className=w-6 h-6 text-red-600 dark:text-red-400",
+                                          },
+                                          {
+                                            id: "confirmation-modal-title-users",
+                                            name: "h2",
+                                            type: "element",
+                                            description: "text-2xl font-bold text-foreground",
+                                          },
+                                        ],
+                                      },
+                                      {
+                                        id: "confirmation-modal-close-button-users",
+                                        name: "button",
+                                        type: "element",
+                                        description: "onClick=onClose className=p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-600 dark:text-zinc-400 hover:text-foreground",
+                                        children: [
+                                          {
+                                            id: "confirmation-close-icon-users",
+                                            name: "CloseIcon",
+                                            type: "element",
+                                            description: "className=w-5 h-5",
+                                          },
+                                        ],
+                                      },
+                                    ],
+                                  },
+                                  {
+                                    id: "confirmation-modal-body-users",
+                                    name: "div",
+                                    type: "container",
+                                    description: "p-6",
+                                    children: [
+                                      {
+                                        id: "confirmation-content",
+                                        name: "div",
+                                        type: "container",
+                                        description: "space-y-6",
+                                        children: [
+                                          {
+                                            id: "confirmation-message",
+                                            name: "div",
+                                            type: "container",
+                                            description: "flex items-left space-y-4",
+                                            children: [
+                                              {
+                                                id: "confirmation-message-text",
+                                                name: "p",
+                                                type: "element",
+                                                description: "text-left text-base",
+                                              },
+                                            ],
+                                          },
+                                          {
+                                            id: "confirmation-actions",
+                                            name: "div",
+                                            type: "container",
+                                            description: "flex justify-end gap-3 pt-4 border-t border-zinc-200 dark:border-zinc-800",
+                                            children: [
+                                              {
+                                                id: "confirmation-cancel-button",
+                                                name: "Button",
+                                                type: "component",
+                                                importPath: "@/app/Components/Fields/Buttons",
+                                                description: "type=button variant=outline onClick=onClose",
+                                                children: [
+                                                  {
+                                                    id: "confirmation-cancel-button-element",
+                                                    name: "button",
+                                                    type: "element",
+                                                    description: "type=button className=px-6 py-3 rounded-lg font-medium border-2 border-foreground text-foreground hover:bg-foreground hover:text-background",
+                                                    children: [
+                                                      {
+                                                        id: "confirmation-cancel-text",
+                                                        name: "span",
+                                                        type: "element",
+                                                        description: "Cancel",
+                                                      },
+                                                    ],
+                                                  },
+                                                ],
+                                              },
+                                              {
+                                                id: "confirmation-confirm-button",
+                                                name: "Button",
+                                                type: "component",
+                                                importPath: "@/app/Components/Fields/Buttons",
+                                                description: "type=button variant=danger onClick=handleConfirm className=bg-red-600 hover:bg-red-700",
+                                                children: [
+                                                  {
+                                                    id: "confirmation-confirm-button-element",
+                                                    name: "button",
+                                                    type: "element",
+                                                    description: "type=button className=px-6 py-3 rounded-lg font-medium bg-red-600 text-white hover:bg-red-700",
+                                                    children: [
+                                                      {
+                                                        id: "confirmation-confirm-text",
+                                                        name: "span",
+                                                        type: "element",
+                                                        description: "Delete",
+                                                      },
+                                                    ],
                                                   },
                                                 ],
                                               },
@@ -987,12 +1129,9 @@ export const usersPageStructure: ComponentInfo = {
                   },
                 ],
               },
-                ],
-              },
             ],
           },
         ],
       },
     ],
-  },
-;
+};

@@ -12,7 +12,7 @@ export const recordsPageStructure: ComponentInfo = {
         importPath: "@/app/Components/ProtectedRoute",
         children: [
           {
-            id: "records-content",
+            id: "records-page-content",
             name: "RecordsPageContent",
             type: "component",
             importPath: "@/app/(Pages)/records/page.tsx",
@@ -128,7 +128,7 @@ export const recordsPageStructure: ComponentInfo = {
                                                     id: "menu-item-icon-records",
                                                     name: "IconComponent",
                                                     type: "element",
-                                                    description: "className=w-5 h-5",
+                                                    description: "className=w-5 h-5 (DashboardIcon/EventAvailableIcon/PeopleIcon/DescriptionIcon/AdminPanelSettingsIcon)",
                                                   },
                                                   {
                                                     id: "menu-item-label-records",
@@ -309,145 +309,111 @@ export const recordsPageStructure: ComponentInfo = {
                             description: "classification=classification subject=subject date=date searchQuery=searchQuery activeTab=activeTab setClassification=setClassification setSubject=setSubject setDate=setDate setSearchQuery=setSearchQuery onGenerateList=handleShow",
                             children: [
                               {
-                                id: "filter-records-container",
+                                id: "filter-container",
                                 name: "div",
                                 type: "container",
                                 description: "bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 p-6 mb-6",
                                 children: [
                                   {
-                                    id: "filter-records-title",
+                                    id: "filter-title",
                                     name: "h2",
                                     type: "element",
                                     description: "text-lg font-semibold text-foreground mb-4",
                                   },
                                   {
-                                    id: "filter-records-main",
+                                    id: "filter-controls-row",
                                     name: "div",
                                     type: "container",
                                     description: "flex justify-between items-end gap-4",
                                     children: [
                                       {
-                                        id: "filter-records-grid",
+                                        id: "filter-inputs-grid",
                                         name: "div",
                                         type: "container",
                                         description: "flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4",
                                         children: [
                                           {
-                                            id: "classification-select-records",
+                                            id: "classification-select-filter",
                                             name: "Select",
                                             type: "component",
                                             importPath: "@/app/Components/Fields/Select",
-                                            description: "label=Classification value=classification onChange=setClassification options=classifications disabled=(activeTab===student-records)",
+                                            description: "label=Classification value=classification onChange=setClassification options=classifications disabled=activeTab===student-records",
                                             children: [
                                               {
-                                                id: "select-wrapper-classification",
+                                                id: "classification-select-wrapper",
                                                 name: "div",
                                                 type: "container",
                                                 description: "w-full",
                                                 children: [
                                                   {
-                                                    id: "select-label-classification",
+                                                    id: "classification-select-label",
                                                     name: "label",
                                                     type: "element",
                                                     description: "block text-sm font-medium mb-2 text-foreground",
                                                   },
                                                   {
-                                                    id: "select-element-classification",
+                                                    id: "classification-select-element",
                                                     name: "select",
                                                     type: "element",
-                                                    description: "w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:border-foreground focus:ring-2 focus:ring-foreground/20 bg-white dark:bg-zinc-900 text-foreground focus:outline-none transition-colors",
-                                                    children: [
-                                                      {
-                                                        id: "select-option-classification",
-                                                        name: "option",
-                                                        type: "element",
-                                                        description: "(mapped options) key=value-index value=option.value",
-                                                      },
-                                                    ],
-                                                  },
-                                                  {
-                                                    id: "select-error-classification",
-                                                    name: "p",
-                                                    type: "element",
-                                                    description: "mt-1 text-sm text-red-500 dark:text-red-400 (conditional error)",
+                                                    description: "name=classification className=w-full px-4 py-3 rounded-lg border",
                                                   },
                                                 ],
                                               },
                                             ],
                                           },
                                           {
-                                            id: "subject-select-records",
+                                            id: "subject-select-filter",
                                             name: "Select",
                                             type: "component",
                                             importPath: "@/app/Components/Fields/Select",
-                                            description: "label=Subject value=subject onChange=setSubject options=subjects disabled=(activeTab===student-records)",
+                                            description: "label=Subject value=subject onChange=setSubject options=subjects disabled=activeTab===student-records",
                                             children: [
                                               {
-                                                id: "select-wrapper-subject",
+                                                id: "subject-select-wrapper",
                                                 name: "div",
                                                 type: "container",
                                                 description: "w-full",
                                                 children: [
                                                   {
-                                                    id: "select-label-subject",
+                                                    id: "subject-select-label",
                                                     name: "label",
                                                     type: "element",
                                                     description: "block text-sm font-medium mb-2 text-foreground",
                                                   },
                                                   {
-                                                    id: "select-element-subject",
+                                                    id: "subject-select-element",
                                                     name: "select",
                                                     type: "element",
-                                                    description: "w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:border-foreground focus:ring-2 focus:ring-foreground/20 bg-white dark:bg-zinc-900 text-foreground focus:outline-none transition-colors",
-                                                    children: [
-                                                      {
-                                                        id: "select-option-subject",
-                                                        name: "option",
-                                                        type: "element",
-                                                        description: "(mapped options) key=value-index value=option.value",
-                                                      },
-                                                    ],
-                                                  },
-                                                  {
-                                                    id: "select-error-subject",
-                                                    name: "p",
-                                                    type: "element",
-                                                    description: "mt-1 text-sm text-red-500 dark:text-red-400 (conditional error)",
+                                                    description: "name=subject className=w-full px-4 py-3 rounded-lg border",
                                                   },
                                                 ],
                                               },
                                             ],
                                           },
                                           {
-                                            id: "date-input-records",
+                                            id: "date-input-filter",
                                             name: "Input",
                                             type: "component",
                                             importPath: "@/app/Components/Fields/Input",
-                                            description: "label=Date type=date value=date onChange=setDate disabled=(activeTab===student-records)",
+                                            description: "label=Date type=date value=date onChange=setDate disabled=activeTab===student-records",
                                             children: [
                                               {
-                                                id: "input-wrapper-date",
+                                                id: "date-input-wrapper",
                                                 name: "div",
                                                 type: "container",
                                                 description: "w-full",
                                                 children: [
                                                   {
-                                                    id: "input-label-date",
+                                                    id: "date-input-label",
                                                     name: "label",
                                                     type: "element",
                                                     description: "block text-sm font-medium mb-2 text-foreground",
                                                   },
                                                   {
-                                                    id: "input-element-date",
+                                                    id: "date-input-element",
                                                     name: "input",
                                                     type: "element",
-                                                    description: "type=date w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:border-foreground focus:ring-2 focus:ring-foreground/20 bg-white dark:bg-zinc-900 text-foreground placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none transition-colors",
-                                                  },
-                                                  {
-                                                    id: "input-error-date",
-                                                    name: "p",
-                                                    type: "element",
-                                                    description: "mt-1 text-sm text-red-500 dark:text-red-400 (conditional error)",
+                                                    description: "type=date name=date className=w-full px-4 py-3 rounded-lg border",
                                                   },
                                                 ],
                                               },
@@ -456,63 +422,29 @@ export const recordsPageStructure: ComponentInfo = {
                                         ],
                                       },
                                       {
-                                        id: "generate-button-wrapper-records",
+                                        id: "generate-button-container",
                                         name: "div",
                                         type: "container",
                                         description: "w-fit",
                                         children: [
                                           {
-                                            id: "generate-button-records",
+                                            id: "generate-button",
                                             name: "Button",
                                             type: "component",
                                             importPath: "@/app/Components/Fields/Buttons",
-                                            description: "variant=primary onClick=onGenerateList className=flex items-center gap-2 disabled=(activeTab===student-records || !classification || !subject || !date)",
+                                            description: "variant=primary onClick=onGenerateList className=flex items-center gap-2 disabled=activeTab===student-records || !classification || !subject || !date",
                                             children: [
                                               {
-                                                id: "generate-button-element-records",
+                                                id: "generate-button-element",
                                                 name: "button",
                                                 type: "element",
-                                                description: "type=button className=px-6 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] focus:ring-foreground",
+                                                description: "type=button className=px-6 py-3 rounded-lg font-medium",
                                                 children: [
                                                   {
-                                                    id: "generate-loading-state-records",
+                                                    id: "generate-button-text",
                                                     name: "span",
                                                     type: "element",
-                                                    description: "flex items-center justify-center gap-2 (conditional isLoading)",
-                                                    children: [
-                                                      {
-                                                        id: "generate-loading-spinner-records",
-                                                        name: "svg",
-                                                        type: "element",
-                                                        description: "animate-spin h-5 w-5 xmlns=http://www.w3.org/2000/svg fill=none viewBox=0 0 24 24",
-                                                        children: [
-                                                          {
-                                                            id: "generate-spinner-circle-records",
-                                                            name: "circle",
-                                                            type: "element",
-                                                            description: "opacity-25 cx=12 cy=12 r=10 stroke=currentColor strokeWidth=4",
-                                                          },
-                                                          {
-                                                            id: "generate-spinner-path-records",
-                                                            name: "path",
-                                                            type: "element",
-                                                            description: "opacity-75 fill=currentColor d=M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z",
-                                                          },
-                                                        ],
-                                                      },
-                                                      {
-                                                        id: "generate-loading-text-records",
-                                                        name: "span",
-                                                        type: "element",
-                                                        description: "Loading...",
-                                                      },
-                                                    ],
-                                                  },
-                                                  {
-                                                    id: "generate-button-text-records",
-                                                    name: "span",
-                                                    type: "element",
-                                                    description: "Generate List (conditional !isLoading)",
+                                                    description: "Generate List",
                                                   },
                                                 ],
                                               },
@@ -523,41 +455,35 @@ export const recordsPageStructure: ComponentInfo = {
                                     ],
                                   },
                                   {
-                                    id: "search-input-wrapper-records",
+                                    id: "search-input-container",
                                     name: "div",
                                     type: "container",
                                     description: "w-fit mt-5",
                                     children: [
                                       {
-                                        id: "search-input-records",
+                                        id: "search-input",
                                         name: "Input",
                                         type: "component",
                                         importPath: "@/app/Components/Fields/Input",
                                         description: "label=Search Student type=text value=searchQuery onChange=setSearchQuery placeholder=Search by name or student number",
                                         children: [
                                           {
-                                            id: "input-wrapper-search",
+                                            id: "search-input-wrapper",
                                             name: "div",
                                             type: "container",
                                             description: "w-full",
                                             children: [
                                               {
-                                                id: "input-label-search",
+                                                id: "search-input-label",
                                                 name: "label",
                                                 type: "element",
                                                 description: "block text-sm font-medium mb-2 text-foreground",
                                               },
                                               {
-                                                id: "input-element-search",
+                                                id: "search-input-element",
                                                 name: "input",
                                                 type: "element",
-                                                description: "type=text w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 focus:border-foreground focus:ring-2 focus:ring-foreground/20 bg-white dark:bg-zinc-900 text-foreground placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none transition-colors",
-                                              },
-                                              {
-                                                id: "input-error-search",
-                                                name: "p",
-                                                type: "element",
-                                                description: "mt-1 text-sm text-red-500 dark:text-red-400 (conditional error)",
+                                                description: "type=text name=searchQuery className=w-full px-4 py-3 rounded-lg border",
                                               },
                                             ],
                                           },
@@ -577,7 +503,7 @@ export const recordsPageStructure: ComponentInfo = {
                             description: "tabs=tabs activeTab=activeTab onTabChange=setActiveTab filteredRecords=filteredRecords onRemove=handleRemove userRole=user?.role",
                             children: [
                               {
-                                id: "tabs-wrapper-records",
+                                id: "tabs-container-records",
                                 name: "div",
                                 type: "container",
                                 description: "bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 mb-6",
@@ -590,7 +516,7 @@ export const recordsPageStructure: ComponentInfo = {
                                     description: "tabs=tabs activeTab=activeTab onTabChange=onTabChange",
                                     children: [
                                       {
-                                        id: "tabs-container-records",
+                                        id: "tabs-container-inner",
                                         name: "div",
                                         type: "container",
                                         description: "flex border-b border-zinc-200 dark:border-zinc-800",
@@ -616,7 +542,7 @@ export const recordsPageStructure: ComponentInfo = {
                                 ],
                               },
                               {
-                                id: "attendance-records-content",
+                                id: "attendance-records-tab-content",
                                 name: "div",
                                 type: "container",
                                 description: "bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 p-6 (conditional activeTab===attendance-records)",
@@ -628,32 +554,32 @@ export const recordsPageStructure: ComponentInfo = {
                                     description: "text-lg font-semibold text-foreground mb-4",
                                   },
                                   {
-                                    id: "attendance-table-records",
+                                    id: "attendance-table",
                                     name: "AttendanceTable",
                                     type: "component",
                                     importPath: "@/app/Components/Tables/AttendanceTable",
                                     description: "records=filteredRecords onRemove=onRemove showQr=true showSignature=true showStatus=true showDate=true showTime=true",
                                     children: [
                                       {
-                                        id: "table-wrapper-records",
+                                        id: "table-container",
                                         name: "div",
                                         type: "container",
                                         description: "overflow-x-auto",
                                         children: [
                                           {
-                                            id: "table-empty-state-records",
+                                            id: "table-empty-state",
                                             name: "div",
                                             type: "container",
                                             description: "text-center py-12 text-zinc-500 dark:text-zinc-400 (conditional records.length===0)",
                                             children: [
                                               {
-                                                id: "empty-state-message-records",
+                                                id: "empty-state-message",
                                                 name: "p",
                                                 type: "element",
                                                 description: "No records found",
                                               },
                                               {
-                                                id: "empty-state-hint-records",
+                                                id: "empty-state-hint",
                                                 name: "p",
                                                 type: "element",
                                                 description: "text-sm mt-2",
@@ -661,72 +587,72 @@ export const recordsPageStructure: ComponentInfo = {
                                             ],
                                           },
                                           {
-                                            id: "table-element-records",
+                                            id: "table-element",
                                             name: "table",
                                             type: "element",
-                                            description: "w-full border-collapse (conditional records.length > 0)",
+                                            description: "w-full border-collapse (conditional records.length>0)",
                                             children: [
                                               {
-                                                id: "table-head-records",
+                                                id: "table-head",
                                                 name: "thead",
                                                 type: "element",
                                                 children: [
                                                   {
-                                                    id: "table-head-row-records",
+                                                    id: "table-header-row",
                                                     name: "tr",
                                                     type: "element",
                                                     description: "border-b border-zinc-200 dark:border-zinc-800",
                                                     children: [
                                                       {
-                                                        id: "table-head-name-records",
+                                                        id: "header-name",
                                                         name: "th",
                                                         type: "element",
                                                         description: "px-4 py-3 text-left text-sm font-semibold text-foreground",
                                                       },
                                                       {
-                                                        id: "table-head-sex-records",
+                                                        id: "header-sex",
                                                         name: "th",
                                                         type: "element",
                                                         description: "px-4 py-3 text-left text-sm font-semibold text-foreground",
                                                       },
                                                       {
-                                                        id: "table-head-student-number-records",
+                                                        id: "header-student-number",
                                                         name: "th",
                                                         type: "element",
                                                         description: "px-4 py-3 text-left text-sm font-semibold text-foreground",
                                                       },
                                                       {
-                                                        id: "table-head-date-records",
+                                                        id: "header-date",
                                                         name: "th",
                                                         type: "element",
                                                         description: "px-4 py-3 text-left text-sm font-semibold text-foreground (conditional showDate)",
                                                       },
                                                       {
-                                                        id: "table-head-time-records",
+                                                        id: "header-time",
                                                         name: "th",
                                                         type: "element",
                                                         description: "px-4 py-3 text-left text-sm font-semibold text-foreground (conditional showTime)",
                                                       },
                                                       {
-                                                        id: "table-head-qr-records",
+                                                        id: "header-qr",
                                                         name: "th",
                                                         type: "element",
                                                         description: "px-4 py-3 text-left text-sm font-semibold text-foreground (conditional showQr)",
                                                       },
                                                       {
-                                                        id: "table-head-signature-records",
+                                                        id: "header-signature",
                                                         name: "th",
                                                         type: "element",
                                                         description: "px-4 py-3 text-left text-sm font-semibold text-foreground (conditional showSignature)",
                                                       },
                                                       {
-                                                        id: "table-head-status-records",
+                                                        id: "header-status",
                                                         name: "th",
                                                         type: "element",
                                                         description: "px-4 py-3 text-left text-sm font-semibold text-foreground (conditional showStatus)",
                                                       },
                                                       {
-                                                        id: "table-head-action-records",
+                                                        id: "header-action",
                                                         name: "th",
                                                         type: "element",
                                                         description: "px-4 py-3 text-center text-sm font-semibold text-foreground",
@@ -736,66 +662,66 @@ export const recordsPageStructure: ComponentInfo = {
                                                 ],
                                               },
                                               {
-                                                id: "table-body-records",
+                                                id: "table-body",
                                                 name: "tbody",
                                                 type: "element",
                                                 children: [
                                                   {
-                                                    id: "table-row-mapped-records",
+                                                    id: "table-row-mapped",
                                                     name: "tr",
                                                     type: "element",
-                                                    description: "(mapped records) key=record.id className=border-b border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors",
+                                                    description: "(mapped records) key=record.id border-b border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors",
                                                     children: [
                                                       {
-                                                        id: "table-cell-name-records",
+                                                        id: "cell-name",
                                                         name: "td",
                                                         type: "element",
                                                         description: "px-4 py-3 text-sm text-foreground",
                                                       },
                                                       {
-                                                        id: "table-cell-sex-records",
+                                                        id: "cell-sex",
                                                         name: "td",
                                                         type: "element",
                                                         description: "px-4 py-3 text-sm text-foreground capitalize",
                                                       },
                                                       {
-                                                        id: "table-cell-student-number-records",
+                                                        id: "cell-student-number",
                                                         name: "td",
                                                         type: "element",
                                                         description: "px-4 py-3 text-sm text-foreground",
                                                       },
                                                       {
-                                                        id: "table-cell-date-records",
+                                                        id: "cell-date",
                                                         name: "td",
                                                         type: "element",
                                                         description: "px-4 py-3 text-sm text-foreground (conditional showDate)",
                                                       },
                                                       {
-                                                        id: "table-cell-time-records",
+                                                        id: "cell-time",
                                                         name: "td",
                                                         type: "element",
                                                         description: "px-4 py-3 text-sm text-foreground (conditional showTime)",
                                                       },
                                                       {
-                                                        id: "table-cell-qr-records",
+                                                        id: "cell-qr",
                                                         name: "td",
                                                         type: "element",
                                                         description: "px-4 py-3 text-sm text-foreground font-mono text-xs (conditional showQr)",
                                                       },
                                                       {
-                                                        id: "table-cell-signature-records",
+                                                        id: "cell-signature",
                                                         name: "td",
                                                         type: "element",
                                                         description: "px-4 py-3 (conditional showSignature)",
                                                         children: [
                                                           {
-                                                            id: "signature-image-records",
+                                                            id: "signature-image",
                                                             name: "img",
                                                             type: "element",
                                                             description: "w-16 h-10 object-contain border border-zinc-200 dark:border-zinc-700 rounded (conditional record.signature)",
                                                           },
                                                           {
-                                                            id: "signature-empty-records",
+                                                            id: "no-signature-text",
                                                             name: "span",
                                                             type: "element",
                                                             description: "text-sm text-zinc-400 dark:text-zinc-600 (conditional !record.signature)",
@@ -803,33 +729,33 @@ export const recordsPageStructure: ComponentInfo = {
                                                         ],
                                                       },
                                                       {
-                                                        id: "table-cell-status-records",
+                                                        id: "cell-status",
                                                         name: "td",
                                                         type: "element",
                                                         description: "px-4 py-3 (conditional showStatus)",
                                                         children: [
                                                           {
-                                                            id: "status-badge-records",
+                                                            id: "status-badge",
                                                             name: "span",
                                                             type: "element",
-                                                            description: "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize (conditional status color classes)",
+                                                            description: "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize (conditional status colors)",
                                                           },
                                                         ],
                                                       },
                                                       {
-                                                        id: "table-cell-action-records",
+                                                        id: "cell-action",
                                                         name: "td",
                                                         type: "element",
                                                         description: "px-4 py-3 text-center",
                                                         children: [
                                                           {
-                                                            id: "delete-button-table-records",
+                                                            id: "delete-button",
                                                             name: "button",
                                                             type: "element",
                                                             description: "onClick=onRemove(record.id) className=p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400 transition-colors title=Remove Entry",
                                                             children: [
                                                               {
-                                                                id: "delete-icon-table-records",
+                                                                id: "delete-icon",
                                                                 name: "DeleteIcon",
                                                                 type: "element",
                                                                 description: "className=w-5 h-5",
@@ -851,7 +777,7 @@ export const recordsPageStructure: ComponentInfo = {
                                 ],
                               },
                               {
-                                id: "student-records-content",
+                                id: "student-records-tab-content",
                                 name: "div",
                                 type: "container",
                                 description: "bg-white dark:bg-zinc-900 rounded-lg border border-zinc-200 dark:border-zinc-800 p-6 (conditional activeTab===student-records && userRole===admin)",
@@ -869,16 +795,208 @@ export const recordsPageStructure: ComponentInfo = {
                                     description: "text-center py-12 text-zinc-500 dark:text-zinc-400",
                                     children: [
                                       {
-                                        id: "student-records-message",
+                                        id: "placeholder-message",
                                         name: "p",
                                         type: "element",
                                         description: "Student Records content will be displayed here",
                                       },
                                       {
-                                        id: "student-records-hint",
+                                        id: "placeholder-hint",
                                         name: "p",
                                         type: "element",
                                         description: "text-sm mt-2",
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    id: "success-modal-records",
+                    name: "SuccessModal",
+                    type: "component",
+                    importPath: "@/app/Components/Modals/SuccessModal",
+                    description: "isOpen=successModal.isOpen onClose=setSuccessModal({ isOpen: false, message: '' }) message=successModal.message duration=3000",
+                    children: [
+                      {
+                        id: "success-modal-base",
+                        name: "Modal",
+                        type: "component",
+                        importPath: "@/app/Components/Modals/Modal",
+                        description: "isOpen=isOpen onClose=onClose title=Success",
+                        children: [
+                          {
+                            id: "success-modal-backdrop",
+                            name: "div",
+                            type: "container",
+                            description: "fixed inset-0 z-50 flex items-center justify-center",
+                            children: [
+                              {
+                                id: "success-backdrop-overlay",
+                                name: "div",
+                                type: "container",
+                                description: "absolute inset-0 bg-black/50 backdrop-blur-sm onClick=onClose",
+                              },
+                              {
+                                id: "success-modal-content",
+                                name: "div",
+                                type: "container",
+                                description: "relative bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 w-full max-w-md max-h-[90vh] overflow-y-auto z-10 m-4",
+                                children: [
+                                  {
+                                    id: "success-modal-header",
+                                    name: "div",
+                                    type: "container",
+                                    description: "flex items-center justify-between p-6 border-b border-zinc-200 dark:border-zinc-800",
+                                    children: [
+                                      {
+                                        id: "success-modal-title-container",
+                                        name: "div",
+                                        type: "container",
+                                        description: "flex items-center gap-3",
+                                        children: [
+                                          {
+                                            id: "success-modal-icon",
+                                            name: "CheckCircleIcon",
+                                            type: "element",
+                                            description: "className=w-6 h-6 text-green-600 dark:text-green-400",
+                                          },
+                                          {
+                                            id: "success-modal-title",
+                                            name: "h2",
+                                            type: "element",
+                                            description: "text-2xl font-bold text-foreground",
+                                          },
+                                        ],
+                                      },
+                                      {
+                                        id: "success-modal-close-button",
+                                        name: "button",
+                                        type: "element",
+                                        description: "onClick=onClose className=p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-600 dark:text-zinc-400 hover:text-foreground",
+                                        children: [
+                                          {
+                                            id: "success-close-icon",
+                                            name: "CloseIcon",
+                                            type: "element",
+                                            description: "className=w-5 h-5",
+                                          },
+                                        ],
+                                      },
+                                    ],
+                                  },
+                                  {
+                                    id: "success-modal-body",
+                                    name: "div",
+                                    type: "container",
+                                    description: "p-6",
+                                    children: [
+                                      {
+                                        id: "success-message",
+                                        name: "p",
+                                        type: "element",
+                                        description: "text-base text-foreground",
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    id: "error-modal-records",
+                    name: "ErrorModal",
+                    type: "component",
+                    importPath: "@/app/Components/Modals/ErrorModal",
+                    description: "isOpen=errorModal.isOpen onClose=setErrorModal({ isOpen: false, message: '' }) message=errorModal.message",
+                    children: [
+                      {
+                        id: "error-modal-base",
+                        name: "Modal",
+                        type: "component",
+                        importPath: "@/app/Components/Modals/Modal",
+                        description: "isOpen=isOpen onClose=onClose title=Error",
+                        children: [
+                          {
+                            id: "error-modal-backdrop",
+                            name: "div",
+                            type: "container",
+                            description: "fixed inset-0 z-50 flex items-center justify-center",
+                            children: [
+                              {
+                                id: "error-backdrop-overlay",
+                                name: "div",
+                                type: "container",
+                                description: "absolute inset-0 bg-black/50 backdrop-blur-sm onClick=onClose",
+                              },
+                              {
+                                id: "error-modal-content",
+                                name: "div",
+                                type: "container",
+                                description: "relative bg-white dark:bg-zinc-900 rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-800 w-full max-w-md max-h-[90vh] overflow-y-auto z-10 m-4",
+                                children: [
+                                  {
+                                    id: "error-modal-header",
+                                    name: "div",
+                                    type: "container",
+                                    description: "flex items-center justify-between p-6 border-b border-zinc-200 dark:border-zinc-800",
+                                    children: [
+                                      {
+                                        id: "error-modal-title-container",
+                                        name: "div",
+                                        type: "container",
+                                        description: "flex items-center gap-3",
+                                        children: [
+                                          {
+                                            id: "error-modal-icon",
+                                            name: "ErrorIcon",
+                                            type: "element",
+                                            description: "className=w-6 h-6 text-red-600 dark:text-red-400",
+                                          },
+                                          {
+                                            id: "error-modal-title",
+                                            name: "h2",
+                                            type: "element",
+                                            description: "text-2xl font-bold text-foreground",
+                                          },
+                                        ],
+                                      },
+                                      {
+                                        id: "error-modal-close-button",
+                                        name: "button",
+                                        type: "element",
+                                        description: "onClick=onClose className=p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors text-zinc-600 dark:text-zinc-400 hover:text-foreground",
+                                        children: [
+                                          {
+                                            id: "error-close-icon",
+                                            name: "CloseIcon",
+                                            type: "element",
+                                            description: "className=w-5 h-5",
+                                          },
+                                        ],
+                                      },
+                                    ],
+                                  },
+                                  {
+                                    id: "error-modal-body",
+                                    name: "div",
+                                    type: "container",
+                                    description: "p-6",
+                                    children: [
+                                      {
+                                        id: "error-message",
+                                        name: "p",
+                                        type: "element",
+                                        description: "text-base text-foreground",
                                       },
                                     ],
                                   },
@@ -897,4 +1015,4 @@ export const recordsPageStructure: ComponentInfo = {
         ],
       },
     ],
-;
+};

@@ -254,6 +254,84 @@ function buildNodesAndEdges(
   return { nodes, edges, subtreeWidth };
 }
 
+// Tree component for displaying component hierarchy
+interface TreeNodeProps {
+  component: ComponentInfo;
+  level: number;
+  expandedNodes: Set<string>;
+  onToggleExpand: (id: string) => void;
+  onSelect: (id: string) => void;
+  selectedId: string | null;
+}
+
+const TreeNode = ({ component, level, expandedNodes, onToggleExpand, onSelect, selectedId }: TreeNodeProps) => {
+  const hasChildren = component.children && component.children.length > 0;
+  const isExpanded = expandedNodes.has(component.id);
+  const isSelected = selectedId === component.id;
+  const indent = level * 16;
+
+  const handleClick = () => {
+    onSelect(component.id);
+  };
+
+  const handleToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (hasChildren) {
+      onToggleExpand(component.id);
+    }
+  };
+
+  return (
+    <div className="select-none">
+      <div
+        className={`flex items-center gap-1 py-1 px-2 rounded cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors ${
+          isSelected ? "bg-yellow-100 dark:bg-yellow-900/30 border border-yellow-300 dark:border-yellow-700" : ""
+        }`}
+        style={{ paddingLeft: `${indent + 8}px` }}
+        onClick={handleClick}
+      >
+        {hasChildren ? (
+          <button
+            onClick={handleToggle}
+            className="w-4 h-4 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:text-foreground"
+          >
+            {isExpanded ? (
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            ) : (
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            )}
+          </button>
+        ) : (
+          <div className="w-4 h-4" />
+        )}
+        <span className="text-sm font-medium text-foreground flex-1 truncate">{component.name}</span>
+        <span className="text-xs text-zinc-500 dark:text-zinc-400 px-1.5 py-0.5 rounded bg-zinc-200 dark:bg-zinc-700">
+          {component.type}
+        </span>
+      </div>
+      {hasChildren && isExpanded && (
+        <div>
+          {component.children!.map((child) => (
+            <TreeNode
+              key={child.id}
+              component={child}
+              level={level + 1}
+              expandedNodes={expandedNodes}
+              onToggleExpand={onToggleExpand}
+              onSelect={onSelect}
+              selectedId={selectedId}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const DynamicPageAnalyzer = () => {
   // Use first available page as default, or "login" if available
   const defaultPage = availablePages.length > 0
@@ -261,7 +339,24 @@ const DynamicPageAnalyzer = () => {
     : "";
 
   const [selectedPage, setSelectedPage] = useState<string>(defaultPage);
+  const [selectedComponentId, setSelectedComponentId] = useState<string>("");
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
   const reactFlowInstance = useRef<ReactFlowInstance | null>(null);
+
+  // Get current page structure
+  const currentPageStructure = useMemo(() => {
+    if (!selectedPage || !pageStructures[selectedPage]) {
+      return null;
+    }
+    return pageStructures[selectedPage];
+  }, [selectedPage]);
+
+  // Expand root node by default when page changes
+  useEffect(() => {
+    if (currentPageStructure) {
+      setExpandedNodes(new Set([currentPageStructure.id]));
+    }
+  }, [currentPageStructure]);
 
   const { nodes: initialNodes, edges: initialEdges } = useMemo(() => {
     if (!selectedPage) {
@@ -317,11 +412,42 @@ const DynamicPageAnalyzer = () => {
   useEffect(() => {
     setNodes(initialNodes);
     setEdges(initialEdges);
+    setSelectedComponentId(""); // Reset selected component when page changes
     // Fit view after nodes are updated
     setTimeout(() => {
       reactFlowInstance.current?.fitView({ padding: 0.3, duration: 400 });
     }, 100);
   }, [initialNodes, initialEdges, setNodes, setEdges]);
+
+  // Move camera/view to selected node - NO style changes, just view movement
+  useEffect(() => {
+    if (selectedComponentId && reactFlowInstance.current) {
+      // Get current nodes from React Flow instance
+      const currentNodes = reactFlowInstance.current.getNodes();
+      // Find the exact node with matching ID
+      const selectedNode = currentNodes.find((n) => n.id === selectedComponentId);
+      
+      if (selectedNode) {
+        // Calculate center of the node
+        const nodePosition = selectedNode.position;
+        const nodeWidth = selectedNode.width || 200;
+        const nodeHeight = selectedNode.height || 90;
+        
+        const centerX = nodePosition.x + nodeWidth / 2;
+        const centerY = nodePosition.y + nodeHeight / 2;
+        
+        // Only move the camera/view - don't modify any node styles
+        setTimeout(() => {
+          if (reactFlowInstance.current) {
+            reactFlowInstance.current.setCenter(centerX, centerY, {
+              duration: 400,
+              zoom: 1.0, // Keep current zoom level
+            });
+          }
+        }, 100);
+      }
+    }
+  }, [selectedComponentId]);
 
   const onConnect = useCallback(
     (params: Edge) => setEdges((eds) => [...eds, params]),
@@ -330,6 +456,24 @@ const DynamicPageAnalyzer = () => {
 
   const handlePageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPage(e.target.value);
+    setSelectedComponentId(""); // Reset component selection when page changes
+    setExpandedNodes(new Set()); // Reset expanded nodes
+  };
+
+  const handleToggleExpand = (id: string) => {
+    setExpandedNodes((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
+  const handleSelectComponent = (id: string) => {
+    setSelectedComponentId(id);
   };
 
   return (
@@ -381,15 +525,15 @@ const DynamicPageAnalyzer = () => {
           />
           <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
 
-          <Panel position="top-left" className="bg-white/90 dark:bg-zinc-900 backdrop-blur-sm p-4 rounded-lg shadow-lg m-4">
+          <Panel position="top-left" className="bg-white/90 dark:bg-zinc-900 backdrop-blur-sm p-4 rounded-lg shadow-lg m-4 max-w-sm">
             <div className="flex flex-col gap-4">
               <div>
                 <h2 className="text-xl font-bold mb-2 text-foreground">Page Analyzer</h2>
                 <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                  Select a page to visualize its component hierarchy
+                  Select a page and click components to highlight them
                 </p>
               </div>
-              <div className="w-64">
+              <div className="w-full">
                 <Select
                   label="Select Page"
                   value={selectedPage}
@@ -397,6 +541,28 @@ const DynamicPageAnalyzer = () => {
                   options={availablePages}
                 />
               </div>
+              {currentPageStructure && (
+                <div className="w-full">
+                  <label className="block text-sm font-medium mb-2 text-foreground">
+                    Component Structure
+                  </label>
+                  <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg bg-white dark:bg-zinc-950 max-h-[500px] overflow-y-auto">
+                    <TreeNode
+                      component={currentPageStructure}
+                      level={0}
+                      expandedNodes={expandedNodes}
+                      onToggleExpand={handleToggleExpand}
+                      onSelect={handleSelectComponent}
+                      selectedId={selectedComponentId}
+                    />
+                  </div>
+                  {selectedComponentId && (
+                    <div className="mt-2 p-2 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded text-xs text-yellow-800 dark:text-yellow-200">
+                      <p className="font-semibold">Component highlighted in diagram</p>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </Panel>
         </ReactFlow>
